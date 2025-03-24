@@ -109,8 +109,8 @@
     color: var(--secondary-color); /* Ensure text stands out on the colorful overlay */
   }
   
-  body > main {
-    padding: 2rem 1rem;    
+  body > main,
+  body > footer {
     background-color: var(--secondary-color);
   }
 
@@ -122,12 +122,30 @@
     color: var(--text-color);    
   }
 
-  footer {
-    text-align: center;
-    padding: 1rem 0;
-    font-size: 0.9rem;        
-  }
-
   body > main a {
     color: var(--primary-color);
   }
+
+  body > footer {
+    text-align: center;
+    padding: 1rem 0;
+    font-size: 0.8rem;        
+  }
+  
+  body > footer {
+    padding: 2rem 1rem;    
+  }
+
+  body > footer .eu-logo {
+    max-width: 8em;
+    margin: 1em auto;
+    text-align: center;
+  }
+  
+
+  body > footer p,
+  body > footer blockquote {
+    font-size: 0.8rem;
+  }
+
+
