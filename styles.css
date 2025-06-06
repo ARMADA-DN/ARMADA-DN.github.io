@@ -111,6 +111,11 @@
     }
   }
 
+  body a {
+    color: var(--text-color);
+    text-decoration: underline;
+  }
+
   /* Logo placement */
   .logo {    
     width: 11em;
