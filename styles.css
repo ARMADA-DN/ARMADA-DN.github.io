@@ -172,13 +172,15 @@
   }
 
   body > footer .eu-logo {
-    max-width: 8em;
+    max-width: 7em;
     margin: 1em auto;
     text-align: center;
   }
   
 
   body > footer p,
+  body > footer figure,
+  body > footer figcaption,
   body > footer blockquote {
     font-size: 0.8rem;
   }
