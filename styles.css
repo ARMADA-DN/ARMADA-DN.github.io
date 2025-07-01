@@ -195,7 +195,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
-  align-items: flex-start;
+  align-items: center;
 }
 
 .image-gallery img {
@@ -205,4 +205,8 @@
   width: auto;
   object-fit: contain;
   flex: 0 0 auto;
+}
+
+.image-gallery img.wide {
+  max-width: 250px;
 }
