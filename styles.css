@@ -56,6 +56,11 @@
     color: var(--primary-color);
   }
 
+
+  address, blockquote, dl, figure, figcaption, label, form, ol, p, pre, table, ul {
+    color: var(--dark-color2);
+  }
+
   /* Hero Section */
   .hero {
     padding: 2em;    
@@ -186,3 +191,15 @@
   }
 
 
+  .image-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
+    padding: 1rem;
+  }
+
+  .image-gallery img {
+    width: 100%;
+    height: auto;
+    max-width: 7em;
+  }
