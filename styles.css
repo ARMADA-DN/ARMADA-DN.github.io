@@ -45,6 +45,7 @@
   }
 
   body > header svg.top {
+    margin-top: -2em;
     margin-bottom: -5em;
   }
 
