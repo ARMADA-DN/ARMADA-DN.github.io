@@ -1,15 +1,25 @@
 :root {
-    --primary-color: #272649;   /* Vibrant blue */
-    --primary-color-light: #6AB0B7;   /* Vibrant blue */
-    --secondary-color: #E1EFF1; /* #EBF5FF Deep purple */
-    --accent-color: #ff5722;    /* Catchy orange */
-    --accent-color2: #ffeb3b;    /* Catchy yellow */ ;
-    --accent-color3: #FFFDEB;    /* Catchy yellow */ ;
-    --white-color: #f7f9fc;
-    --text-color: #272649;
-    --text-color2: #6F58A1;
-    --dark-color: #272649;
-    --dark-color2: #52506D; /*  --primary-color: 80% black */
+    /* CSS HEX */
+    --space-indigo: #272649ff;
+    --vintage-grape: #52506dff;
+    --dusty-grape: #6f58a1ff;
+    --pacific-blue: #6ab0b7ff;
+    --spicy-orange: #d74e09ff;
+    --bright-lemon: #ffeb3bff;
+    --azure-mist: #e1eff1ff;
+    --platinum: #f7f9fcff;
+
+    --primary-color: var(--space-indigo);  
+    --primary-color-light: var(--pacific-blue);  
+    --secondary-color: var(--azure-mist); 
+    --accent-color: var(--spicy-orange);  
+    --accent-color2: var(--bright-lemon); 
+    --accent-color3: var(--platinum);   
+    --white-color: var(--platinum);
+    --text-color: var(--space-indigo);
+    --text-color2: var(--dusty-grape);
+    --dark-color: var(--space-indigo);
+    --dark-color2: var(--vintage-grape); /*  --primary-color: 80% black */
   }
   
   body {
