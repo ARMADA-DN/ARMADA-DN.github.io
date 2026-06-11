@@ -54,6 +54,11 @@
     z-index: 9;
   }
 
+  body > header svg.bottom {
+    display: block;
+    margin-bottom: -1px;
+  }
+
   body > header svg.top {
     margin-top: -2em;
     margin-bottom: -5em;
@@ -174,6 +179,10 @@
     top:-1em;
   }
 
+  body > main > .container {
+    background-color: var(--white-color);
+  }
+
   body > main p,
   body > main ul, 
   body > main ol, 
@@ -210,6 +219,9 @@
     font-size: 0.8rem;
   }
 
+  .footer-grid {
+    align-items: center;
+  }
 
 .image-gallery {
   display: flex;
@@ -230,6 +242,7 @@
 .image-gallery img.wide {
   max-width: 250px;
 }
+
 /* Program details under intro, without card container */
 .program-details-inline {
     margin-top: 1rem;
@@ -241,9 +254,6 @@
 }
 
 .program-detail-list {
-    display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 0.5rem;
     margin-bottom: 0.65rem;
 }
 
@@ -331,9 +341,6 @@
 
 /* Candidate grid */
 .candidate-grid {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 0.55rem;
     align-items: stretch;
 }
 
@@ -475,12 +482,12 @@
     line-height: 1.38;
 }
 
+.more-info {
+    margin-top: 1rem;
+}
+
 /* Medium screens: keep cards readable */
 @media screen and (max-width: 1100px) {
-    .candidate-grid {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-    }
-
     .candidate-top {
         align-items: flex-start;
     }
@@ -506,15 +513,6 @@
 
 /* Tablet */
 @media screen and (max-width: 900px) {
-    .program-detail-list {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-
-    .candidate-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 0.65rem;
-    }
-
     .candidate-photo {
         width: 4.8rem;
         height: 5.4rem;
@@ -526,11 +524,6 @@
 @media screen and (max-width: 640px) {
     .program-details-inline {
         margin-top: 0.75rem;
-    }
-
-    .program-detail-list,
-    .candidate-grid {
-        grid-template-columns: 1fr;
     }
 
     .wp-wrapper {
