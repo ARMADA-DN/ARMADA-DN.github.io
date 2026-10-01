@@ -147,7 +147,8 @@
   .site-nav ul li a:focus,
   .site-nav ul li a:focus-visible,
   .site-nav ul li a:active {
-    outline: none;
+    outline: 2px solid var(--white-color);
+    outline-offset: 2px;
     background-color: transparent;
     border-radius: 0;
     border-bottom-color: var(--white-color);
