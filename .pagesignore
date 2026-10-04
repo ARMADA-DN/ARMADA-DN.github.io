@@ -1,0 +1,17 @@
+# Left out of the published site by .github/pages-stage.sh, one rsync pattern
+# per line. A leading / anchors a pattern at the repository root.
+#
+# Every row of kind "doc" in the README's asset table must be matched here: the
+# stage script fails the deploy when one would be published anyway.
+/.git/
+/.github/
+/.githooks/
+/.agent-defs/
+/.temp/
+/_site/
+/docs/
+/README.md
+/AGENTS.md
+/.gitignore
+/.gitidentity.example
+/.pagesignore
