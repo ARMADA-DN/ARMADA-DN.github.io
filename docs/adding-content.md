@@ -16,12 +16,15 @@ candidates), `call.html` (the 2025 call for candidates, now closed) and
    first, as `2026-univr-winterschool.html` is.
 2. **Set the `<head>`**, following "Head metadata" below: at least a title of
    its own.
-3. **Keep the frame**: the nav, header, hero, `svg.bottom` wave and footer, as
-   described in [design.md](design.md#layout). Change only the hero's
-   `.sub-heading` and the contents of `<main>`.
-4. **Link it from the nav on every page**, if it belongs in the nav. The link
-   list is copied into each page: add the `<li>` to all of them, and put
-   `aria-current="page"` on the new page's own link only.
+3. **Keep the frame**: the header with hero and `svg.bottom` wave, then the
+   nav, `<main>` and the footer, as described in
+   [design.md](design.md#layout). Change only the hero's `.sub-heading` and the
+   contents of `<main>`.
+4. **Decide whether it goes in the nav.** Only main sections do (Home, Doctoral
+   Candidates). A call or an event page stays out of it and is linked from the
+   content instead, but still carries the nav itself. For a page that goes in,
+   add its `<li>` to the nav on every page, with `aria-current="page"` on the
+   new page's own link only.
 5. **Use root-relative paths** for every asset and link (`/styles.css`,
    `/logos/…`), so the page works at any URL.
 6. **Check it locally** (see the README) at both a wide window and a narrow

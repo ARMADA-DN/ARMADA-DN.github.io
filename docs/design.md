@@ -9,7 +9,7 @@ before changing markup or styles.
   from boxes. No gradients, shadows or tinted panels in the content area; the
   hero is the one place for colour and image.
 - **One accent, used sparingly.** Dusty grape marks what is current or
-  interactive: heading icons and a hovered link.
+  interactive: heading icons, the current page in the nav, a hovered link.
 - **Few shapes.** One radius (`--radius`), one rule (`--rule`). A new component
   uses these before adding its own.
 - **Sizes from the scale.** Text sizes come from `--step-*`.
@@ -75,6 +75,10 @@ The one channel token is `--space-indigo-rgb`, used at 0.12 in `--rule`. A
 tint of another palette colour adds its channel token to `:root` beside it,
 with the same three numbers as the hex value.
 
+The sticky nav is opaque on purpose: a translucent background with
+`backdrop-filter` has to be re-blurred on every frame and makes scrolling
+stutter.
+
 ## Type
 
 - **Body:** `"Montserrat", "Space Grotesk", sans-serif`.
@@ -85,7 +89,7 @@ with the same three numbers as the hex value.
   similar are `--dark-color2`.
 - **Links** in `<main>` take the text colour, underlined in pacific blue with a
   small offset; the underline turns to the accent on hover.
-- **Labels** (figure labels): uppercase, weight 700, letter-spacing
+- **Labels** (the nav, figure labels): uppercase, weight 700, letter-spacing
   0.06em, at `--step--1` or `--step--2`.
 
 ### Scale
@@ -93,7 +97,7 @@ with the same three numbers as the hex value.
 | Token | Size | For |
 | - | - | - |
 | `--step--2` | 0.75rem | Labels, card meta |
-| `--step--1` | 0.875rem | Secondary text, project titles |
+| `--step--1` | 0.875rem | Nav, secondary text, project titles |
 | `--step-0` | 1rem | Body, card names |
 | `--step-1` | 1.25rem | Section `h3`, work package icons |
 | `--step-2` | 1.6rem | Work package `h2`, figures |
@@ -106,7 +110,7 @@ wide screens; `.sub-heading` 1.75rem, 2.5rem) and the footer's 0.8rem.
 
 - `--radius` (0.375rem): cards and photos. Sections have no radius.
 - `--rule` (1px of space indigo at 12%): card borders, the line above each
-  section.
+  section, the line under the nav.
 
 ## Layout
 
@@ -115,23 +119,26 @@ Every page has the same frame:
 ```html
 <body>
   <header>
-    <nav class="site-nav" aria-label="Primary">…</nav>
     <div class="hero"><div class="hero-content">…</div></div>
     <svg class="bottom">…</svg>   <!-- the wave into the page -->
   </header>
+  <nav class="site-nav" aria-label="Primary">…</nav>
   <main>…</main>
   <footer>…</footer>
 </body>
 ```
+
+The nav sits between `<header>` and `<main>`, not inside the header: it is
+sticky, and a sticky element only sticks within its parent.
 
 Inside `<main>`, the content pages use the flexboxgrid row: `.intro`
 (`col-xs-12 col-md-8`) beside `.side` (`col-xs-12 col-md-4`), 8 and 4 of 12
 columns from 64em (1024px) up and full width below. `index.html` also has
 `.intro` rows offset by one column. `candidates.html` uses Pico's `.grid`.
 
-Breakpoints in `styles.css`: 1025px (wider only) and 480px (the nav). Pico's
-`.grid` puts its children side by side from 992px. Use one of these before
-adding a new breakpoint.
+Breakpoints in `styles.css`: 1025px (wider only, the hero) and 480px (the nav).
+Pico's `.grid` puts its children side by side from 992px. Use one of these
+before adding a new breakpoint.
 
 ## Components
 
@@ -139,10 +146,16 @@ Each entry says where the component is used and where it is styled.
 
 ### Site navigation: `.site-nav`
 
-On every page. Fixed to the top of the viewport over the header gradient, with
-white links. The current page's link carries `aria-current="page"`, which
-underlines it. `--nav-font-size` is 16px, or 14px under 480px. The link list is
-copied into every page, so adding a page means adding its link to all of them.
+On every page, right after `<header>`. A single row of uppercase text links on
+the page background, with a rule underneath. It scrolls up with the page and
+then sticks to the top of the viewport. The current page's link carries
+`aria-current="page"`, which underlines it in the accent; hover underlines in
+pacific blue. The link list is copied into every page, so adding a page to the
+nav means adding its link to all of them.
+
+Only the main sections are in the nav: Home and Doctoral Candidates. The call
+page and event pages are reached from links in the content, and keep the nav
+on their own pages.
 
 ### Header and hero: `body > header`, `.hero`, `.hero-content`
 

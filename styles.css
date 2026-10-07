@@ -58,7 +58,7 @@
     background-size: cover;
     background-position: top center;
 
-    padding-top: calc(3em + 78px);
+    padding-top: 3em;
     padding-bottom: 0;
   }
 
@@ -95,95 +95,70 @@
     color: var(--dark-color2);
   }
 
-  /* Site Navigation */
+  /* Site navigation: a minimal bar under the hero, sticky once it
+     reaches the top of the viewport */
   .site-nav {
-    --nav-font-size: 16px;
-    position: fixed;
+    position: sticky;
     top: 0;
-    left: 0;
-    right: 0;
-    z-index: 1000;
-    font-size: var(--nav-font-size);
-    background-image: url('logos/armada-bg-gradient.png');
-    background-size: cover;
-    background-attachment: fixed;
-    background-position: top center;
+    z-index: 100;
+    background: var(--white-color);
+    border-bottom: var(--rule);
   }
 
   .site-nav .container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 1em 1.25em;
+    padding-top: 0;
+    padding-bottom: 0;
   }
 
   .site-nav > .container > ul {
     display: flex;
     flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5em 2em;
+    gap: 0 1.75rem;
     margin: 0;
     padding: 0;
     list-style: none;
   }
 
-  .site-nav > .container > ul > li {
+  .site-nav li {
     margin: 0;
     padding: 0;
+    list-style: none;
   }
 
-  .site-nav ul li a {
+  .site-nav a {
     display: inline-block;
     margin: 0;
-    padding: 0.15em 0 0.3em;
-    color: var(--white-color);
-    background-color: transparent;
-    border-radius: 0;
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 1em;
-    line-height: 1.3;
-    letter-spacing: 0.01em;
+    padding: 0.85rem 0 0.7rem;
     border-bottom: 2px solid transparent;
-    outline: none;
-    transition: border-color 0.2s ease, opacity 0.2s ease;
+    border-radius: 0;
+    color: var(--text-color);
+    font-size: var(--step--1);
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    text-decoration: none;
   }
 
-  .site-nav ul li a:hover {
-    background-color: transparent;
+  .site-nav a:hover {
     border-bottom-color: var(--primary-color-light);
   }
 
-  .site-nav ul li a:focus,
-  .site-nav ul li a:focus-visible,
-  .site-nav ul li a:active {
-    outline: 2px solid var(--white-color);
-    outline-offset: 2px;
-    background-color: transparent;
-    border-radius: 0;
-    border-bottom-color: var(--white-color);
+  .site-nav a[aria-current="page"] {
+    border-bottom-color: var(--accent-color);
   }
 
-  .site-nav ul li a[aria-current="page"] {
-    border-bottom-color: var(--white-color);
+  .site-nav a:focus-visible {
+    outline: 2px solid var(--primary-color-light);
+    outline-offset: 2px;
   }
 
   @media (max-width: 480px) {
-    body > header {
-      padding-top: calc(3em + 60px);
-    }
-
-    .site-nav {
-      --nav-font-size: 14px;
-    }
-
-    .site-nav .container {
-      padding: 0.75em 1em;
-    }
-
     .site-nav > .container > ul {
-      gap: 0.4em 1.25em;
+      gap: 0 1.25rem;
+    }
+
+    .site-nav a {
+      font-size: var(--step--2);
     }
   }
 
@@ -231,19 +206,6 @@
   }
 
 
-  @media screen and (min-width: 1025px) {
-    .intro {
-      margin-top: -3em;
-      z-index: 99;
-    }
-
-    .side {
-      position: relative;
-      right: -2em;
-      top: -2em;
-    }
-  }
-
   body a {
     color: var(--text-color);
     text-decoration: underline;
@@ -276,10 +238,10 @@
     background-color: var(--white-color);
   }
 
-  body > main  {
+  body > main {
     position: relative;
     z-index: 99;
-    top:-1em;
+    padding-top: 1.5rem;
   }
 
   body > main > .container {
