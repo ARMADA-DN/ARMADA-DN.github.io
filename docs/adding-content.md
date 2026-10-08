@@ -97,6 +97,22 @@ icon, "WP<N>: <Name>" and a `<small>` naming the lead partner, then a
 - a `span.meta`: "Partner: <institution> (<short name>)",
 - an em dash, then the application link, or "Call closed." with the deadline.
 
+## Adding a publication
+
+On `index.html`, in `ol.pub-list` under "Publications & Results". Add a new
+`li.pub` at the top: the list is newest first. Copy the existing one and change
+each part, as described in [design.md](design.md#publications-pub-list-pub):
+
+- `.pub-meta`: the year, then the venue's acronym.
+- `.pub-title`: the title, linking to the paper's PDF or, without one, its DOI.
+- `.pub-authors`: every author, in the form "Surname, I.", in the paper's order.
+- `.pub-venue`: the full venue name as the publisher gives it.
+- `.pub-abstract`: one or two sentences.
+- `.pub-links`: one link per resource that exists.
+
+When there are more than a handful, the list moves to a page of its own; ask
+before doing that.
+
 ## Adding a partner logo
 
 On `index.html`, in `figure.logo-strip`.

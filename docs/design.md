@@ -6,13 +6,16 @@ before changing markup or styles.
 ## Principles
 
 - **Quiet, with a little depth.** Structure comes from type, whitespace and
-  thin rules. The page is lightly tinted, and the things you can click (cards,
-  follow links) are white paper resting on it with a faint shadow. No gradients
+  thin rules. The page is lightly tinted, and self-contained items (cards,
+  follow links, publications) are white paper resting on it with a faint
+  shadow. No gradients
   or tinted panels in the content area; the hero is the one place for colour
   and image, and the deep indigo footer closes the page.
 - **One accent, used sparingly.** Dusty grape marks what is current or
   interactive, and where a section starts: heading icons, the current page in
   the nav, a hovered link, the bar on each section's rule.
+- **Whitespace, not lines, between columns.** Main and aside are set apart by
+  space and type size; no vertical line divides the page.
 - **Few shapes.** One radius (`--radius`), one rule (`--rule`). A new component
   uses these before adding its own.
 - **Sizes from the scale.** Text sizes come from `--step-*`.
@@ -45,7 +48,7 @@ value.
 
 | Token | Value | Used for |
 | - | - | - |
-| `--space-indigo` | `#272649` | Headings, body text, dark shadows |
+| `--space-indigo` | `#272649` | Headings, body text, shadows, the footer |
 | `--vintage-grape` | `#52506d` | Header background, secondary text |
 | `--dusty-grape` | `#6f58a1` | The accent, through `--accent-color` |
 | `--pacific-blue` | `#6ab0b7` | Link underlines, hover borders, meta icons |
@@ -53,7 +56,7 @@ value.
 | `--bright-lemon` | `#ffeb3b` | Not used yet |
 | `--azure-mist` | `#e1eff1` | Photo backgrounds while loading |
 | `--platinum` | `#f7f9fc` | Text on dark, the base of the page tint |
-| `--white` | `#ffffff` | Paper: cards and follow links |
+| `--white` | `#ffffff` | Paper: cards, follow links, publications |
 
 ### Roles
 
@@ -103,17 +106,19 @@ stutter.
   similar are `--dark-color2`.
 - **Links** in `<main>` take the text colour, underlined in pacific blue with a
   small offset; the underline turns to the accent on hover.
-- **Labels** (the nav, stats labels, "Follow ARMADA"): uppercase, weight 700, letter-spacing
-  0.06em, at `--step--1` or `--step--2`.
+- **Labels** (the nav, stats labels, "Follow ARMADA", a publication's year and
+  venue): uppercase, weight 700, letter-spacing 0.06em, at `--step--1` or
+  `--step--2`.
+- **The aside** runs a step smaller than the main text; see Aside.
 
 ### Scale
 
 | Token | Size | For |
 | - | - | - |
-| `--step--2` | 0.75rem | Labels, card meta |
-| `--step--1` | 0.875rem | Nav, secondary text, project titles |
-| `--step-0` | 1rem | Body, card names |
-| `--step-1` | 1.25rem | Section `h3`, work package icons |
+| `--step--2` | 0.75rem | Labels, meta, fine print |
+| `--step--1` | 0.875rem | Nav, aside text, secondary text, project titles, authors, the footer |
+| `--step-0` | 1rem | Body, card names, aside `h3`, follow links |
+| `--step-1` | 1.25rem | Section and entry `h3`, publication titles, work package icons |
 | `--step-2` | 1.6rem | Work package `h2`, figures |
 | `--step-3` | 2.2rem | Spare, for a page `h1` that needs one |
 
@@ -123,12 +128,13 @@ wide screens; `.sub-heading` 1.75rem, 2.5rem) and the base heading sizes
 
 ## Shape
 
-- `--radius` (0.375rem): cards, follow links and photos. Sections have no
-  radius.
-- `--rule` (1px of space indigo at 12%): card and follow link borders, the line
-  above each section and entry, under the nav.
-- `--shadow-paper`: a faint two-layer indigo shadow, at rest, on paper (cards,
-  follow links). Nothing else casts a shadow.
+- `--radius` (0.375rem): paper (cards, follow links, publications) and photos.
+  Sections have no radius.
+- `--rule` (1px of space indigo at 12%): the border of paper, the line above
+  each section and entry, under the nav. Rules span the content, never the
+  full window.
+- `--shadow-paper`: a faint two-layer indigo shadow, at rest, on paper. Nothing
+  else casts a shadow.
 - **Accent bar**: each `.section` has a 2.5rem by 3px bar in the accent over
   the start of its rule, drawn by `.section::before`.
 
@@ -164,6 +170,14 @@ fractions, with responsive ones applying from a breakpoint. Add `gutters` to the
 
 - **Main and aside**: two thirds and one third from 64em (1024px), full width
   below. `.main` and `.aside` name the role; the `pure-u-*` classes size them.
+  From 64em the aside stands 3rem off the main column, separated by whitespace
+  alone. The aside is also raised by 7em (`position: relative; top: -7em`), so
+  its logo breaks above the main column's first line and up past the nav's
+  rule, giving the page a staggered, vertical rhythm. It sits in front of the
+  nav (`z-index: 101`) so the raised logo shows.
+- **Main text** is a touch smaller than the root (0.9375rem), with a line
+  height of 1.65 and a little more space between paragraphs, so it breathes
+  beside the aside.
 - **Inset**: `class="main inset …"` indents a main column by one twelfth from
   64em, for the home page's rows under the intro.
 - **Cards**: a `pure-g gutters` with one `pure-u-1 pure-u-lg-1-3` per card, the
@@ -185,7 +199,8 @@ once in `styles.css` and used wherever the pattern appears.
 | Site navigation | `.site-nav` | every page |
 | Header and hero | `body > header`, `.hero` | every page |
 | Section | `.section` | call, candidates |
-| Entry | `.entry` | index, winter school |
+| Entry | `.entry` | winter school |
+| Publications | `.pub-list`, `.pub` | index |
 | Card | `.card` | candidates |
 | Meta | `.meta` | candidates, call |
 | Stats | `.stats` | candidates |
@@ -199,7 +214,9 @@ once in `styles.css` and used wherever the pattern appears.
 ### Site navigation: `.site-nav`
 
 Right after `<header>`. A single row of uppercase text links on the page
-background, with a rule underneath. It scrolls up with the page and then sticks
+background, with a rule underneath that spans the content width, not the
+window. On a page with an aside, from 64em the rule stops where the main column
+ends, so the raised aside does not cross it. It scrolls up with the page and then sticks
 to the top of the viewport. The current page's link carries
 `aria-current="page"`, which underlines it in the accent; hover underlines in
 pacific blue. The link list is copied into every page, so adding a page to the
@@ -213,9 +230,9 @@ on their own pages.
 
 The header is the gradient image `logos/armada-bg-gradient.png` over
 `--dark-color2`, scrolling with the page: no `background-attachment: fixed`,
-which made the image stand still while the page moved. The hero holds the white
-logo (`#h-logo`, inside the `h1`) and a `.sub-heading`, both in
-`--white-color`. The `svg.bottom` wave beneath it draws the transition into the
+which made the image stand still while the page moved. The hero holds the `h1`,
+the white logo (`#h-logo`) on most pages and the word "ARMADA" on `call.html`,
+and a `.sub-heading`, both in `--white-color`. The `svg.bottom` wave beneath it draws the transition into the
 page background.
 
 ### Section: `.section`
@@ -241,10 +258,35 @@ closing contact line.
 
 ### Entry: `.entry`
 
-One item of a kind in a list of them: the publication on `index.html`, each
-keynote on `2026-univr-winterschool.html`. An `h3` title, with an optional
+One item of a kind in a list of them: each keynote on
+`2026-univr-winterschool.html`. An `h3` title, with an optional
 `<small>` subtitle (the speaker's affiliation), then paragraphs. Styled like a
 section for now; a separate name so the two can diverge.
+
+### Publications: `.pub-list`, `.pub`
+
+On `index.html` for now; built to move to a page of its own unchanged. An
+`ol.pub-list` marked `reversed`, newest first, each item an `li.pub` on paper
+(like a card, but not a link as a whole).
+
+```html
+<li class="pub">
+  <p class="pub-meta"><span class="pub-year">2025</span> · EDBT</p>
+  <h3 class="pub-title"><a href="…pdf">Title</a></h3>
+  <p class="pub-authors">Surname, I., Surname, I., …</p>
+  <p class="pub-venue">Proceedings of …</p>
+  <p class="pub-abstract">One or two sentences.</p>
+  <p class="pub-links"><a href="…pdf"><i class="fas fa-file-pdf"></i> PDF</a></p>
+</li>
+```
+
+- `.pub-meta`: year (in the accent) and venue acronym, as an uppercase label.
+- `.pub-title`: the title, linking to the paper. Indigo, underlined only on
+  hover.
+- `.pub-authors` and `.pub-venue`: `--step--1` in `--dark-color2`, the venue in
+  italics.
+- `.pub-links`: one link per resource, each with an icon in pacific blue: PDF
+  now, and DOI, BibTeX, slides or code as they exist. Only list what exists.
 
 ### Card: `.card`
 
@@ -304,6 +346,13 @@ a name in `<b>`. Key innovations and events on `index.html`, supervisors on
 `call.html`, speakers on the winter school page. No styles of its own yet; it
 is the hook for styling these lists together.
 
+### Aside: `.aside`
+
+The side column, a third as wide as the main text, so it runs a step smaller:
+`--step--1` text with a line height of 1.55, `h3` at `--step-0`, and more space
+between items and before each heading. The follow links inside it stay at
+`--step-0`.
+
 ### Logo strip: `.logo-strip`
 
 A wrapping row of partner logos on `index.html`, from `logos/`, each at most
@@ -312,7 +361,7 @@ A wrapping row of partner logos on `index.html`, from `logos/`, each at most
 ### Follow: `.follow`
 
 The project's LinkedIn and GitHub, prominent at the top of the home page's
-aside: an uppercase label, then one `a.follow-link` per network, full width,
+aside: an uppercase `.follow-label`, then one `a.follow-link` per network, full width,
 on paper like the cards, with the network's icon in pacific blue and an arrow in
 the accent. The footer
 repeats the same links in small; change both together.
@@ -323,7 +372,7 @@ A deep indigo band (`--dark-color`) closing every page, with platinum text at
 78%, white links and strong text, and its rules in platinum at 15%. The same
 markup on every page, copied into each:
 
-- `.funding` (two thirds from 48em): the EU flag beside "Funded by the European
+- `.funding` (two thirds from 48em): the EU flag (`.eu-logo`, as supplied) beside "Funded by the European
   Union", the Horizon Europe grant (101168951, linking to CORDIS) and the Swiss
   SERI co-funding (SBFI No. 24.00005).
 - `.contact` (one third): the project address as a `mailto:` link, then

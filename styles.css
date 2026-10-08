@@ -237,12 +237,32 @@
     top: 0;
     z-index: 100;
     background: var(--page-color);
+  }
+
+  /* The rule spans the content width, not the window. On a page with an
+     aside it stops where the main column ends, leaving room for the raised
+     aside. */
+  .site-nav .container {
+    position: relative;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
+  .site-nav .container::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
     border-bottom: var(--rule);
   }
 
-  .site-nav .container {
-    padding-top: 0;
-    padding-bottom: 0;
+  @media screen and (min-width: 64em) {
+    body:has(.aside) .site-nav .container::after {
+      /* the main column of a gutters grid: two thirds of the row, less
+         the gutter */
+      width: calc((100% + 1.5rem) * 2 / 3 - 1.5rem);
+    }
   }
 
   .site-nav > .container > ul {
@@ -374,7 +394,6 @@
 
   body > main {
     position: relative;
-    z-index: 99;
     padding: 1.5rem 0 3rem;
   }
 
@@ -602,6 +621,152 @@ body > footer a {
     line-height: 1.1;
 }
 
+/* Aside: the side column runs a step smaller than the main text, with
+   more air between items, since it is a third as wide */
+.aside {
+    font-size: var(--step--1);
+    line-height: 1.55;
+}
+
+.aside h3 {
+    margin-bottom: 0.75rem;
+    font-size: var(--step-0);
+    line-height: 1.3;
+}
+
+.aside :is(p, ul, ol) + h3 {
+    margin-top: calc(var(--space) * 1.25);
+}
+
+.aside p {
+    margin-bottom: 0.6rem;
+}
+
+.aside li {
+    margin-bottom: 0.5rem;
+}
+
+.aside hr {
+    margin: calc(var(--space) * 1.25) 0;
+}
+
+/* Main: the text column runs a touch smaller than the root, with more
+   leading and space between paragraphs */
+.main {
+    font-size: 0.9375rem;
+    line-height: 1.65;
+}
+
+.main :is(p, ul, ol) {
+    margin-bottom: calc(var(--space) * 1.1);
+}
+
+/* From the lg breakpoint, the aside stands further off the main column:
+   whitespace separates them, not a line */
+@media screen and (min-width: 64em) {
+    .pure-g.gutters > .aside {
+        padding-left: 2.25rem;
+    }
+
+    /* The aside rises above the main column's first line, breaking the
+       line into the nav for a staggered, vertical rhythm. It sits in front
+       of the nav so the raised logo shows. */
+    .aside {
+        position: relative;
+        top: -7em;
+        z-index: 101;
+    }
+}
+
+.aside > .logo {
+    display: block;
+    margin: 0 0 1.25rem;
+}
+
+/* Publications: a list, newest first, each publication a paper card.
+   Built as a list so it can move to a page of its own unchanged. */
+.pub-list {
+    margin: 0;
+    padding: 0;
+}
+
+.pub {
+    margin: 0 0 1rem;
+    padding: 1.25rem 1.5rem;
+    list-style: none;
+    border: var(--rule);
+    border-radius: var(--radius);
+    background-color: var(--paper-color);
+    box-shadow: var(--shadow-paper);
+}
+
+.pub p {
+    margin: 0 0 0.5rem;
+}
+
+.pub-meta {
+    color: var(--dark-color2);
+    font-size: var(--step--2);
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+.pub-year {
+    color: var(--accent-color);
+}
+
+.pub-title {
+    margin: 0.25rem 0 0.6rem;
+    font-size: var(--step-1);
+    line-height: 1.25;
+}
+
+.pub-title a {
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+.pub-title a:hover {
+    text-decoration: underline;
+    text-decoration-color: var(--primary-color-light);
+}
+
+body > main .pub-authors,
+body > main .pub-venue {
+    color: var(--dark-color2);
+    font-size: var(--step--1);
+    line-height: 1.4;
+}
+
+body > main .pub-venue {
+    font-style: italic;
+}
+
+.pub .pub-abstract {
+    margin-top: 0.85rem;
+}
+
+.pub .pub-links {
+    margin: 0.85rem 0 0;
+}
+
+body > main .pub-links a {
+    margin-right: 1rem;
+    font-size: var(--step--1);
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.pub-links i {
+    margin-right: 0.3em;
+    color: var(--primary-color-light);
+}
+
+.pub-links a:hover {
+    text-decoration: underline;
+}
+
 /* Logo strip: a wrapping row of partner logos */
 .logo-strip {
     display: flex;
@@ -651,6 +816,7 @@ body > main a.follow-link {
     background-color: var(--paper-color);
     box-shadow: var(--shadow-paper);
     color: var(--text-color);
+    font-size: var(--step-0);
     font-weight: 700;
     text-decoration: none;
     transition: border-color 0.15s ease;
