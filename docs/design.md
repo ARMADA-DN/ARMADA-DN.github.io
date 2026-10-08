@@ -45,10 +45,10 @@ value.
 | `--space-indigo` | `#272649` | Headings, body text, dark shadows |
 | `--vintage-grape` | `#52506d` | Header background, secondary text |
 | `--dusty-grape` | `#6f58a1` | The accent, through `--accent-color` |
-| `--pacific-blue` | `#6ab0b7` | Accents, card borders, pills, icons |
+| `--pacific-blue` | `#6ab0b7` | Link underlines, hover borders, meta icons |
 | `--spicy-orange` | `#d74e09` | Not used: tried as the accent and dropped as too loud |
 | `--bright-lemon` | `#ffeb3b` | Not used yet |
-| `--azure-mist` | `#e1eff1` | Pale panels, photo backgrounds |
+| `--azure-mist` | `#e1eff1` | Photo backgrounds while loading |
 | `--platinum` | `#f7f9fc` | Page background, text on dark |
 
 ### Roles
@@ -94,7 +94,7 @@ stutter.
   similar are `--dark-color2`.
 - **Links** in `<main>` take the text colour, underlined in pacific blue with a
   small offset; the underline turns to the accent on hover.
-- **Labels** (the nav, figure labels): uppercase, weight 700, letter-spacing
+- **Labels** (the nav, stats labels, "Follow ARMADA"): uppercase, weight 700, letter-spacing
   0.06em, at `--step--1` or `--step--2`.
 
 ### Scale
@@ -109,13 +109,16 @@ stutter.
 | `--step-3` | 2.2rem | Spare, for a page `h1` that needs one |
 
 Outside the scale on purpose: the hero's display sizes (`h1` 3rem, 4rem on
-wide screens; `.sub-heading` 1.75rem, 2.5rem) and the footer's 0.8rem.
+wide screens; `.sub-heading` 1.75rem, 2.5rem) and the base heading sizes
+(`h1` 2rem to `h6` 1rem), which components override from the scale.
 
 ## Shape
 
-- `--radius` (0.375rem): cards and photos. Sections have no radius.
-- `--rule` (1px of space indigo at 12%): card borders, the line above each
-  section, the line under the nav.
+- `--radius` (0.375rem): cards, follow links and photos. Sections have no
+  radius.
+- `--rule` (1px of space indigo at 12%): card and follow link borders, the line
+  above each section and entry, under the nav, above the footer and its fine
+  print.
 
 ## Layout
 
@@ -162,13 +165,30 @@ Breakpoints: Pure's 35.5em (568px), 48em (768px), 64em (1024px) and 80em
 
 ## Components
 
-Each entry says where the component is used and where it is styled.
+Classes name what a thing is, not which page it is on. Each component is styled
+once in `styles.css` and used wherever the pattern appears.
+
+| Component | Class | Used on |
+| - | - | - |
+| Site navigation | `.site-nav` | every page |
+| Header and hero | `body > header`, `.hero` | every page |
+| Section | `.section` | call, candidates |
+| Entry | `.entry` | index, winter school |
+| Card | `.card` | candidates |
+| Meta | `.meta` | candidates, call |
+| Stats | `.stats` | candidates |
+| Note | `.note` | candidates |
+| Tasks | `.tasks` | call |
+| Item list | `.item-list` | index, call, winter school |
+| Logo strip | `.logo-strip` | index |
+| Follow | `.follow` | index |
+| Footer | `body > footer` | every page |
 
 ### Site navigation: `.site-nav`
 
-On every page, right after `<header>`. A single row of uppercase text links on
-the page background, with a rule underneath. It scrolls up with the page and
-then sticks to the top of the viewport. The current page's link carries
+Right after `<header>`. A single row of uppercase text links on the page
+background, with a rule underneath. It scrolls up with the page and then sticks
+to the top of the viewport. The current page's link carries
 `aria-current="page"`, which underlines it in the accent; hover underlines in
 pacific blue. The link list is copied into every page, so adding a page to the
 nav means adding its link to all of them.
@@ -179,65 +199,124 @@ on their own pages.
 
 ### Header and hero: `body > header`, `.hero`, `.hero-content`
 
-On every page. The header is the gradient image `logos/armada-bg-gradient.png`
-over `--dark-color2`, scrolling with the page: no `background-attachment: fixed`,
-which made the image stand still while the page moved. The hero holds the white logo (`#h-logo`, inside the
-`h1`) and a `.sub-heading`, both in `--white-color`. The `svg.bottom` wave
-beneath it draws the transition into the page background.
+The header is the gradient image `logos/armada-bg-gradient.png` over
+`--dark-color2`, scrolling with the page: no `background-attachment: fixed`,
+which made the image stand still while the page moved. The hero holds the white
+logo (`#h-logo`, inside the `h1`) and a `.sub-heading`, both in
+`--white-color`. The `svg.bottom` wave beneath it draws the transition into the
+page background.
 
-### Section: `article.wp-container`, `.wp-section`
+### Section: `.section`
 
-A block of content opened by a rule above it, with no background, border or
-shadow. `article.wp-container` is used on `index.html`, `call.html` and
-`2026-univr-winterschool.html`; `.wp-section` on `candidates.html`. Its `h3`
-(on `call.html`) is `--step-1`, with a `<small>` on its own line for the lead
-partner.
+A block opened by a rule, with no background, border or shadow. Used for each
+work package and, on `candidates.html`, for the programme details and the
+closing contact line.
 
-A task in a work package (`call.html`) is an `li.task` without a bullet:
-`.task-name` in the text colour at weight 600, `.task-leader` smaller in
-`--dark-color2`.
+```html
+<section class="section wp-efficiency">
+  <h2><i class="fas fa-tachometer-alt"></i> WP1: Efficiency</h2>
+  …
+</section>
+```
 
-### Programme details: `.program-details-inline`, `.program-detail-list`, `.program-funding`
+- A direct `h2` sets its icon beside the title, in the accent at `--step-1`.
+- A direct `h3` is `--step-1`. A `<small>` inside it sits on its own line in
+  `--dark-color2`, for a subtitle such as the lead partner.
+- The `wp-<name>` class (`wp-efficiency`, `wp-grounding`, `wp-explainability`,
+  `wp-soundness`, `wp-guidance`) names a work package. No styles yet; it is
+  the hook for giving each work package its own colour.
 
-On `candidates.html`, in the intro. A row of figures: each item in the detail
-list is a `<p>` with a label (`span`) and a value (`strong`). The value shows
-large above the label, with a pacific blue line to the left. The markup keeps
-the label first, so it reads in that order.
+### Entry: `.entry`
 
-### Work package header: `.wp-wrapper`, `.wp-header`, `.wp-icon`
+One item of a kind in a list of them: the publication on `index.html`, each
+keynote on `2026-univr-winterschool.html`. An `h3` title, with an optional
+`<small>` subtitle (the speaker's affiliation), then paragraphs. Styled like a
+section for now; a separate name so the two can diverge.
 
-On `candidates.html`. Each work package is a `.wp-section` (see Section) that
-also carries a `wp-<name>` class (`wp-efficiency`, `wp-grounding`,
-`wp-explainability`, `wp-soundness`, `wp-guidance`), which has no styles. The
-`.wp-header` sets a Font Awesome icon in the accent beside the `h2`.
+### Card: `.card`
 
-### Candidate card: `.candidate-grid`, `.candidate-card`
+A person, as one link to their profile: on `candidates.html`, three to a row
+from 64em, each in its own Pure unit, which the card fills.
 
-On `candidates.html`, in a `pure-g gutters candidate-grid` inside each work
-package section, each card in its own `pure-u-1 pure-u-lg-1-3`. The whole card is a link (`<a class="candidate-card">`) to the
-candidate's profile. A flat box: `--rule` border, `--radius`, no background.
-Hover turns the border pacific blue; keyboard focus draws a pacific blue
-outline.
+```html
+<div class="pure-u-1 pure-u-lg-1-3">
+  <a class="card" href="…">
+    <div class="card-top">
+      <div class="card-photo"><img src="/images/candidates/dc1.png" alt="Full Name" /></div>
+      <div class="card-title"><h3>Full Name</h3></div>
+    </div>
+    <div class="meta">
+      <span><i class="fas fa-university"></i> Host institution</span>
+      <span><i class="fas fa-map-marker-alt"></i> Country</span>
+      <span><i class="fas fa-flag"></i> Nationality</span>
+    </div>
+    <p class="card-text">Project title</p>
+  </a>
+</div>
+```
 
-- `.candidate-top`: `.candidate-photo` (a portrait from
-  `images/candidates/dc<N>.<ext>`, with `--radius`) and `.candidate-title`
-  (`h3` name, left-aligned).
-- `.candidate-meta`: plain text at `--step--2` in `--dark-color2`, each part a
-  `span` with its icon in pacific blue: `fa-university` for the host
-  institution, on a line of its own, then `fa-map-marker-alt` for the country
-  and `fa-flag` for nationality.
-- `.candidate-project`: the project title.
+A flat box: `--rule` border, `--radius`, no background. Hover turns the border
+pacific blue; keyboard focus draws a pacific blue outline. The photo is about
+5:5.7, cropped to fit. In a card, the first `.meta` part takes a line of its
+own.
 
-### Partner logos: `.image-gallery`
+### Meta: `.meta`
 
-On `index.html`. A wrapping row of partner logos from `logos/`, each at most
+Small facts about something: `--step--2`, weight 600, `--dark-color2`, each
+fact optionally led by an icon in pacific blue. The card's institution, country
+and nationality; a task's partner on `call.html` (`<span class="meta">`).
+
+### Stats: `.stats`
+
+A row of figures on `candidates.html`: a `pure-g stats` of `<p>` units, two per
+row, four from 48em. Each `<p>` holds a label `<span>` and a value `<strong>`;
+the value shows large above the uppercase label, with a pacific blue line to
+the left. The markup keeps the label first, so it reads in that order.
+
+### Note: `.note`
+
+A secondary paragraph at `--step--1`, such as the funding details under the
+stats.
+
+### Tasks: `.tasks`
+
+The task list of a work package on `call.html`: a `ul.tasks` of plain `li`
+without bullets, each with a `.task-name` (weight 600) and a `span.meta` for
+the partner.
+
+### Item list: `.item-list`
+
+A list whose items lead with a label: `<li><strong>Label:</strong> text</li>` or
+a name in `<b>`. Key innovations and events on `index.html`, supervisors on
+`call.html`, speakers on the winter school page. No styles of its own yet; it
+is the hook for styling these lists together.
+
+### Logo strip: `.logo-strip`
+
+A wrapping row of partner logos on `index.html`, from `logos/`, each at most
 150 by 60px, or 250px wide with `class="wide"` for wide marks.
 
-### Footer: `body > footer`, `.footer-grid`, `.eu-logo`
+### Follow: `.follow`
 
-On every page, copied into each. The EU flag with "Funded by the European
-Union", the grant agreement (101168951) linking to CORDIS, and the EU
-disclaimer. That text is required by the grant: change it only on instruction.
+The project's LinkedIn and GitHub, prominent at the top of the home page's
+aside: an uppercase label, then one `a.follow-link` per network, full width,
+with the network's icon in pacific blue and an arrow in the accent. The footer
+repeats the same links in small; change both together.
+
+### Footer: `body > footer`
+
+The same markup on every page, copied into each:
+
+- `.funding` (two thirds from 48em): the EU flag beside "Funded by the European
+  Union", the Horizon Europe grant (101168951, linking to CORDIS) and the Swiss
+  SERI co-funding (SBFI No. 24.00005).
+- `.contact` (one third): the project address as a `mailto:` link, then
+  LinkedIn and GitHub.
+- `.fineprint`: the EU disclaimer and the copyright, small, under a rule.
+
+The funding statement and the disclaimer are required by the grant: change
+their wording only on instruction. A change to the footer is made on all four
+pages.
 
 ## Known issues
 
@@ -248,8 +327,8 @@ To fix on purpose, not in passing:
   with `fill="#000A14"`, commented out on the other pages. That breaks the
   rule that presentation lives in the stylesheet. The fix is a `fill` rule in
   `styles.css` per wave and removing the attributes from every page.
-- **Older sizes.** The scale covers the redesigned components. Rules outside
-  them (the hero, the footer, the logo) still set their own sizes.
+- **Older sizes.** The hero and the side column logo still set their own
+  sizes outside the scale.
 - **Mixed paths.** Most assets use root-relative paths (`/styles.css`), but some
   `img` tags use relative ones (`logos/…`, `./images/…`). Both work from the
   root. New markup uses root-relative.
