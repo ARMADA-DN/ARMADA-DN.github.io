@@ -61,19 +61,20 @@ Data Exploration".
 
 ## Adding a doctoral candidate
 
-On `candidates.html`, inside the `.candidate-grid` of their work package
+On `candidates.html`, inside the `pure-g gutters` grid of their work package
 section.
 
 1. **Photo**: `images/candidates/dc<N>.<ext>`, where `<N>` is the candidate's
    number (1 to 15 today). A portrait, cropped by the card to about 5:5.7.
-2. **Card**: copy an existing `<a class="candidate-card">` and change, in order:
+2. **Card**: copy an existing card, the `<a class="card">` together with the
+   `<div class="pure-u-1 pure-u-lg-1-3">` around it, and change, in order:
    - `href`: the candidate's public profile.
    - The photo `src`, and its `alt`: the candidate's full name.
    - The `h3`: the full name.
-   - The three pills in `.candidate-meta`, in this order: host institution
+   - The three facts in `.meta`, in this order: host institution
      (`fa-university`), country of the host (`fa-map-marker-alt`), nationality
      (`fa-flag`).
-   - `.candidate-project`: the project title. The existing titles mix title
+   - `.card-text`: the project title. The existing titles mix title
      case and sentence case, and which one is meant is not decided yet: copy
      the title as the candidate gives it, and ask before changing the case of
      any.
@@ -81,24 +82,24 @@ section.
 
 ## Adding a work package
 
-On `candidates.html`, a `.wp-section` inside `.wp-wrapper`, with a
-`wp-<name>` class naming it. Its `.wp-header` holds one Font Awesome icon in
-`.wp-icon` and the `h2` "WP<N>: <Name>". A work package has the same icon on
+On `candidates.html`, a `<section class="section wp-<name>">`, the `wp-<name>`
+class naming it. It opens with `<h2><i class="fas fa-…"></i> WP<N>: <Name></h2>`,
+then the grid of cards. A work package has the same icon on
 every page: WP1 Efficiency `fa-tachometer-alt`, WP2 Grounding `fa-anchor`, WP3
 Explainability `fa-comments`, WP4 Soundness `fa-shield-alt`, WP5 Guidance
 `fa-compass`.
 
-On `call.html`, each work package is an `article.wp-container`: an `h3` with
-the icon, "WP<N>: <Name>" and a `<small>` naming the lead partner, then a list
-of `li.task`. Each task is:
+On `call.html`, each work package is an `article.section`: an `h3` with the
+icon, "WP<N>: <Name>" and a `<small>` naming the lead partner, then a
+`ul.tasks`. Each task is an `li` with:
 
 - `.task-name`: `<b>T<N>.<M>:</b>` and the task title,
-- `.task-leader`: "Partner: <institution> (<short name>)",
+- a `span.meta`: "Partner: <institution> (<short name>)",
 - an em dash, then the application link, or "Call closed." with the deadline.
 
 ## Adding a partner logo
 
-On `index.html`, in `figure.image-gallery`.
+On `index.html`, in `figure.logo-strip`.
 
 1. Put the file in `logos/`, named with the partner's short name in lowercase
    (`kth.png`, `uzh.png`). PNG with a transparent background, unless the

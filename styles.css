@@ -402,67 +402,89 @@
     margin-right: 0.15em;
   }
 
-  body > footer {
-    text-align: center;
-    padding: 2rem 1rem;
-    font-size: 0.8rem;
-  }
-
-  body > footer .eu-logo {
-    max-width: 7em;
-    margin: 1em auto;
-    text-align: center;
-  }
-
-
-  body > footer p,
-  body > footer figure,
-  body > footer figcaption,
-  body > footer blockquote {
-    font-size: 0.8rem;
-  }
-
-  .footer-grid {
-    align-items: center;
-  }
-
-.image-gallery {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  align-items: center;
+/* Footer: funding beside contact, fine print underneath. The EU
+   funding statement and disclaimer are required by the grant. */
+body > footer {
+    padding: 2.5rem 0 2rem;
+    border-top: var(--rule);
+    color: var(--dark-color2);
+    font-size: var(--step--1);
 }
 
-.image-gallery img {
-  max-width: 150px;
-  max-height: 60px;
-  height: auto;
-  width: auto;
-  object-fit: contain;
-  flex: 0 0 auto;
+body > footer p {
+    margin: 0 0 0.75rem;
 }
 
-.image-gallery img.wide {
-  max-width: 250px;
+.funding {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
 }
 
-/* Section: a block of content opened by a rule, used for a work
-   package on every page (article.wp-container, .wp-section) */
-article.wp-container,
-.wp-section {
+.funding .eu-logo {
+    flex: 0 0 4.5rem;
+    width: 4.5rem;
+    margin-top: 0.2rem;
+}
+
+.contact a {
+    color: var(--text-color);
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.contact a:hover {
+    text-decoration: underline;
+    text-decoration-color: var(--accent-color);
+}
+
+.contact a + a {
+    margin-left: 1rem;
+}
+
+.contact i {
+    margin-right: 0.3em;
+    color: var(--primary-color-light);
+}
+
+.fineprint {
+    margin-top: 1.5rem;
+    padding-top: 1rem;
+    border-top: var(--rule);
+    font-size: var(--step--2);
+}
+
+/* Section: a block opened by a rule. Work packages, programme details.
+   Entry: one item of a kind, such as a publication or a keynote; styled
+   like a section for now. */
+.section,
+.entry {
     margin: 2.5rem 0 0;
     padding: 1.5rem 0 0;
     border-top: var(--rule);
-    border-radius: 0;
-    background: none;
-    box-shadow: none;
 }
 
-article.wp-container h3 {
+.section > h2 {
+    display: flex;
+    align-items: baseline;
+    gap: 0.6rem;
+    margin-bottom: 1.25rem;
+    font-size: var(--step-2);
+    line-height: 1.15;
+}
+
+.section > h2 > i {
+    margin-right: 0;
     font-size: var(--step-1);
 }
 
-article.wp-container h3 small {
+.section > h3,
+.entry > h3 {
+    font-size: var(--step-1);
+}
+
+.section > h3 small,
+.entry > h3 small {
     display: block;
     margin-top: 0.35rem;
     color: var(--dark-color2);
@@ -471,12 +493,31 @@ article.wp-container h3 small {
     letter-spacing: 0;
 }
 
-/* Task list in a work package (call.html) */
-article.wp-container ul {
+/* Meta: small facts about something, each optionally with an icon */
+.meta {
+    color: var(--dark-color2);
+    font-size: var(--step--2);
+    font-weight: 600;
+    line-height: 1.3;
+}
+
+.meta i {
+    margin-right: 0.3em;
+    color: var(--primary-color-light);
+}
+
+/* Note: a secondary paragraph, such as funding details */
+.note {
+    margin-bottom: 0;
+    font-size: var(--step--1);
+}
+
+/* Tasks: the task list of a work package (call.html) */
+.tasks {
     padding-left: 0;
 }
 
-li.task {
+.tasks > li {
     margin-bottom: 1rem;
     list-style: none;
 }
@@ -486,26 +527,17 @@ li.task {
     font-weight: 600;
 }
 
-.task-leader {
-    color: var(--dark-color2);
-    font-size: var(--step--1);
-}
+/* Item list: a list of "label: text" items (key innovations, events,
+   people). No styles of its own yet. */
 
-/* Programme details: a row of figures */
-.program-details-inline {
-    margin-top: 1.5rem;
-}
-
-.program-details-inline h3 {
-    font-size: var(--step-1);
-}
-
-.program-detail-list {
+/* Stats: a row of figures, each a <p> with a label <span> and a value
+   <strong>, shown value first */
+.stats {
     margin-bottom: 1rem;
     row-gap: 1rem;
 }
 
-.program-detail-list p {
+.stats p {
     display: flex;
     flex-direction: column-reverse;
     gap: 0.15rem;
@@ -514,7 +546,7 @@ li.task {
     border-left: 2px solid var(--primary-color-light);
 }
 
-.program-detail-list span {
+.stats span {
     color: var(--dark-color2);
     font-size: var(--step--2);
     font-weight: 700;
@@ -522,46 +554,87 @@ li.task {
     text-transform: uppercase;
 }
 
-.program-detail-list strong {
+.stats strong {
     color: var(--primary-color);
     font-size: var(--step-2);
     font-weight: 900;
     line-height: 1.1;
 }
 
-.program-funding {
-    margin-bottom: 0;
+/* Logo strip: a wrapping row of partner logos */
+.logo-strip {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    align-items: center;
+}
+
+.logo-strip img {
+    max-width: 150px;
+    max-height: 60px;
+    height: auto;
+    width: auto;
+    object-fit: contain;
+    flex: 0 0 auto;
+}
+
+.logo-strip img.wide {
+    max-width: 250px;
+}
+
+/* Follow: the project's social links, prominent at the top of the home
+   page's aside. The footer repeats them in small. */
+.follow {
+    margin: 1rem 0 var(--space);
+    padding-bottom: var(--space);
+    border-bottom: var(--rule);
+}
+
+.follow-label {
+    margin-bottom: 0.6rem;
+    color: var(--dark-color2);
+    font-size: var(--step--2);
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+body > main a.follow-link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+    padding: 0.6rem 0.8rem;
+    border: var(--rule);
+    border-radius: var(--radius);
+    color: var(--text-color);
+    font-weight: 700;
+    text-decoration: none;
+    transition: border-color 0.15s ease;
+}
+
+body > main a.follow-link:hover {
+    border-color: var(--primary-color-light);
+}
+
+.follow-link span i {
+    margin-right: 0.4em;
+    color: var(--primary-color-light);
+    font-size: var(--step-1);
+    vertical-align: -0.1em;
+}
+
+.follow-link > i {
+    color: var(--accent-color);
     font-size: var(--step--1);
 }
 
-/* Work package header: icon and title on one line */
-.wp-header {
-    display: flex;
-    align-items: baseline;
-    gap: 0.6rem;
-    margin-bottom: 1.25rem;
-}
-
-.wp-icon {
-    color: var(--accent-color);
-    font-size: var(--step-1);
-}
-
-.wp-header h2 {
-    margin: 0;
-    font-size: var(--step-2);
-    line-height: 1.15;
-}
-
-/* Candidate cards */
-.candidate-grid {
-    align-items: stretch;
-}
-
-.candidate-card {
+/* Card: a person, as one link. In a Pure unit, which it fills. */
+.card {
     display: flex;
     flex-direction: column;
     gap: 0.75rem;
+    height: 100%;
     min-width: 0;
     padding: 1rem;
     border: var(--rule);
@@ -570,34 +643,33 @@ li.task {
     color: var(--text-color);
     text-decoration: none;
     transition: border-color 0.15s ease;
-    height: 100%;
 }
 
-body > main a.candidate-card {
+body > main a.card {
     text-decoration: none;
 }
 
-.candidate-card:hover {
+.card:hover {
     border-color: var(--primary-color-light);
 }
 
-.candidate-card:focus-visible {
+.card:focus-visible {
     outline: 2px solid var(--primary-color-light);
     outline-offset: 2px;
 }
 
-.candidate-top {
+.card-top {
     display: flex;
     align-items: center;
     gap: 0.9rem;
 }
 
-.candidate-photo {
+.card-photo {
     flex: 0 0 4.5rem;
     height: 5.1rem;
 }
 
-.candidate-photo img {
+.card-photo img {
     width: 100%;
     height: 100%;
     display: block;
@@ -606,44 +678,31 @@ body > main a.candidate-card {
     background: var(--secondary-color);
 }
 
-.candidate-title {
+.card-title {
     min-width: 0;
 }
 
-.candidate-title h3 {
+.card-title h3 {
     margin: 0;
     font-size: var(--step-0);
     line-height: 1.2;
 }
 
-.candidate-meta {
+.card .meta {
     display: flex;
     flex-wrap: wrap;
     gap: 0.2rem 0.9rem;
     margin: 0;
-    color: var(--dark-color2);
-    font-size: var(--step--2);
-    font-weight: 600;
-    line-height: 1.3;
 }
 
-.candidate-meta span:first-child {
+.card .meta span:first-child {
     flex-basis: 100%;
 }
 
-.candidate-meta i {
-    margin-right: 0.3em;
-    color: var(--primary-color-light);
-}
-
-.candidate-project {
+.card-text {
     margin: 0;
     color: var(--text-color);
     font-size: var(--step--1);
     font-weight: 600;
     line-height: 1.4;
-}
-
-.more-info {
-    margin-top: 2.5rem;
 }
