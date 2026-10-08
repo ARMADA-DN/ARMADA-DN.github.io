@@ -25,6 +25,7 @@ These are binding. They override any general default behaviour.
 8. **Never start a long-running or destructive operation on your own
    initiative.** Describe the command and let the user run it.
 9. **Ask instead of investigating, when asking is cheaper**, and be brief.
+10. **Follow the guides in `docs/`.** See "Project guides" below.
 
 ## Other instruction files
 
@@ -36,4 +37,16 @@ both be followed, stop and ask which one applies.
 
 ## Project guides
 
-The guides in `docs/` say how the site is built and written: `voice.md` before writing or editing copy, `design.md` before changing markup or styles, `adding-content.md` before adding content.
+The guides in `docs/` say how this site is built and written, and they are
+binding in the same way as the core rules.
+
+- **Read the matching guide before the first change**, and follow it:
+  `docs/voice.md` before writing or editing copy, `docs/design.md` before
+  changing markup or styles, `docs/adding-content.md` before adding a page or an
+  entry. A change that touches more than one of these reads each.
+- **Keep the guides true.** A change that makes a guide wrong (a new component,
+  a renamed token, a new page) updates the guide in the same commit.
+- **Never fill a gap by guessing.** Where a guide says "(unverified)" or "To fill
+  in", or says nothing about the case at hand, ask the user. Then write the
+  answer into the guide and drop the mark, so the next agent does not have to
+  ask again.

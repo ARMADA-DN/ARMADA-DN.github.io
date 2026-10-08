@@ -8,28 +8,17 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous" />
 
 
-    <!-- PicoCSS Framework -->
-    <link rel="stylesheet" href="/pico.min.css" />
-    <!-- Flexbox Grid CSS -->
-    <link rel="stylesheet" href="/flexboxgrid.min.css" />
+    <!-- Pure: reset and responsive grid -->
+    <link rel="stylesheet" href="/pure-min.css" />
+    <link rel="stylesheet" href="/grids-responsive-min.css" />
     <!-- Custom CSS -->
     <link rel="stylesheet" href="/styles.css" />
   </head>
   <body>
     <header>
-      <nav class="site-nav" aria-label="Primary">
-        <div class="container">
-          <ul>
-            <li><a href="/" aria-current="page">Home</a></li>
-            <li><a href="/candidates.html">Doctoral Candidates</a></li>
-          </ul>
-        </div>
-      </nav>
-
       <!-- <svg class="top" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#000A14" fill-opacity="1" d="M0,96L288,64L576,224L864,128L1152,224L1440,320L1440,0L1152,0L864,0L576,0L288,0L0,0Z"></path></svg> -->
       <!-- Hero Section with SVG Overlay and Catchy Colors -->
       <div class="hero">        
@@ -38,13 +27,22 @@
           <p class="sub-heading">Reliable Conversational Domain-specific <br /> Data Exploration and Analysis</p>
         </div>
       </div>
-      <svg class="bottom" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#f7f9fc" fill-opacity="1" d="M0,192L360,192L720,224L1080,64L1440,96L1440,320L1080,320L720,320L360,320L0,320Z"></path></svg>
+      <svg class="bottom" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path d="M0,192L360,192L720,224L1080,64L1440,96L1440,320L1080,320L720,320L360,320L0,320Z"></path></svg>
     </header>
+
+    <nav class="site-nav" aria-label="Primary">
+      <div class="container">
+        <ul>
+          <li><a href="/" aria-current="page">Home</a></li>
+          <li><a href="/candidates.html">Doctoral Candidates</a></li>
+        </ul>
+      </div>
+    </nav>
 
     <main>
         <div class="container">
-            <div class="row">            
-                <section class="intro col-xs-12 col-md-8">
+            <div class="pure-g gutters">
+                <section class="main pure-u-1 pure-u-lg-2-3">
                     <h1>A foundational framework that bridges formal data retrieval and natural language innovation for reliable assistive technology.</h1>
                     <p>
                     Conversational AI and Large Language Models (LLMs) such as ChatGPT and Bard promise to answer complex problems by performing simple conversations. Unfortunately, their answering processes are inscrutable, as well as prone to bias, hallucinations, and high computational costs.
@@ -62,10 +60,22 @@
                     Importantly, the ARMADA project tackles crucial EU needs for regulating AI by training experts who may advise EU bodies on the technical adoption of these technologies in critical disciplines such as medicine, education, and business intelligence. The network brings together 8 organizations from 7 countries, managed by a diverse team of expert researchers, to form an interoperability scheme for sharing knowledge and skills.
                     </p>
                 </section>
-                <section class="side col-xs-12 col-md-4">
+                <section class="aside pure-u-1 pure-u-lg-1-3">
                     <!-- Logo placeholder -->
                     <img src="/logos/armada-logo-c-v.png" alt="Project Logo" class="logo" width="40px"/>
-                    
+
+                    <div class="follow">
+                        <p class="follow-label">Follow ARMADA</p>
+                        <a class="follow-link" href="https://www.linkedin.com/company/107306168/">
+                            <span><i class="fab fa-linkedin"></i> LinkedIn</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                        <a class="follow-link" href="https://github.com/ARMADA-DN/">
+                            <span><i class="fab fa-github"></i> GitHub</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+
                     <!-- <h3><i class="fas fa-sitemap"></i> Navigation</h3>
                     <ul>
                         <li><a href="/candidates.html">Doctoral Candidates</a></li>
@@ -76,28 +86,19 @@
                     
                     
                     <h3><i class="fas fa-lightbulb"></i> Key Innovations:</h3>                    
-                    <ul>
+                    <ul class="item-list">
                         <li><strong>Conversational Data Analytics (CDA):</strong> interact with data using natural language, combine LLMs with structured query languages.</li>
                         <li><strong>Reliability First:</strong> redesign CDA with <em>Efficiency, Grounding, Explainability, Soundness, and Guidance</em> at the core.</li>
                         <li><strong>Compositional Framework:</strong> integrate LLMs with robust data management techniques to overcome the limits of hallucinations and opaqueness.</li>
                         <li><strong>Beyond Generative:</strong> towards a system that is domain-aware, verifiable, and able to justify its responses.</li>
                         <li><strong>Future Vision:</strong> new architectures, metrics, and methodologies for reliable, explainable, and efficient AI-driven analytics system.</li>
                     </ul>
-                    <footer>
-                      <p>
-                      <small>
-                      <i class="fas fa-link"></i> Follow us to know more: <br />
-                      <a class="linkedin" href="https://www.linkedin.com/company/107306168/"><i class="fab fa-linkedin"></i> LinkedIn</a>
-                      <a class="github" href="https://github.com/ARMADA-DN/" ><i class="fab fa-github"></i> GitHub</a>
-                      </small>
-                      </p>
-                    </footer>
                 </section>
             </div>
-            <div class="row">
-                <section class="intro col-xs-12 col-md-8 col-md-offset-1">                    
+            <div class="pure-g gutters">
+                <section class="main inset pure-u-1 pure-u-lg-2-3">                    
                     <h2><i class="fas fa-handshake"></i> Scientific Partners</h2>
-                    <figure class="image-gallery">
+                    <figure class="logo-strip">
                     <img src="logos/arc.png" alt="arc" class="wide" />
                     <img src="logos/au.png" alt="au" />
                     <img src="logos/cnrs.png" alt="cnrs" />
@@ -114,10 +115,10 @@
                     </figure>
                 </section>
             </div>
-            <div class="row">
-                <section class="intro col-xs-12 col-md-8 col-md-offset-1">
+            <div class="pure-g gutters">
+                <section class="main inset pure-u-1 pure-u-lg-2-3">
                     <h2><i class="fas fa-calendar-alt"></i> Events</h2>
-                    <ul>
+                    <ul class="item-list">
                         <li><strong>Winter School 2026</strong> - January 12-17, 2026 | Verona, Italy<br/>
                         <small>First official open kick-off event of the MSCA Doctoral Networks program. <a href="/2026-univr-winterschool.html">Learn more</a></small></li>
                         <li><strong>Summer School 2026</strong> - April 26 - May 2, 2026 | Cargese, France<br/>
@@ -125,16 +126,21 @@
                     </ul>
                 </section>
             </div>
-            <div class="row">
-                <section class="intro col-xs-12 col-md-8 col-md-offset-1">
+            <div class="pure-g gutters">
+                <section class="main inset pure-u-1 pure-u-lg-2-3">
                     <h2><i class="fas fa-file-pdf"></i> Publications & Results</h2>
-                    <article class="wp-container">
-                        <h3>Towards Reliable Conversational Data Analytics</h3>
-                        <p><strong>by:</strong> Amer-Yahia, S., Bogojeska, J., Facchinetti, R., Franceschi, V., Gionis, A., Hose, K., Koutrika, G., Kouyos, R.D., Lissandrini, M., Maniu, S., Mirylenka, K., Mottin, D., Palpanas, T., Rigotti, M., Velegrakis, Y.</p>
-                        <p><strong>Published in:</strong> Proceedings of the 27th International Conference on Extending Database Technology (EDBT 2025)</p>
-                        <p><strong>Paper:</strong> <a href="https://openproceedings.org/2025/conf/edbt/paper-160.pdf" target="_blank">Read Full Paper (PDF)</a></p>
-                        <p>We present the vision at the core of the ARMADA project, describing our approach combining Large Language Models with structured data management for reliable conversational data exploration.</p>
-                    </article>
+                    <ol class="pub-list" reversed>
+                        <li class="pub">
+                            <p class="pub-meta"><span class="pub-year">2025</span> · EDBT</p>
+                            <h3 class="pub-title"><a href="https://openproceedings.org/2025/conf/edbt/paper-160.pdf" target="_blank" rel="noopener noreferrer">Towards Reliable Conversational Data Analytics</a></h3>
+                            <p class="pub-authors">Amer-Yahia, S., Bogojeska, J., Facchinetti, R., Franceschi, V., Gionis, A., Hose, K., Koutrika, G., Kouyos, R.D., Lissandrini, M., Maniu, S., Mirylenka, K., Mottin, D., Palpanas, T., Rigotti, M., Velegrakis, Y.</p>
+                            <p class="pub-venue">Proceedings of the 27th International Conference on Extending Database Technology (EDBT 2025)</p>
+                            <p class="pub-abstract">We present the vision at the core of the ARMADA project, describing our approach combining Large Language Models with structured data management for reliable conversational data exploration.</p>
+                            <p class="pub-links">
+                                <a href="https://openproceedings.org/2025/conf/edbt/paper-160.pdf" target="_blank" rel="noopener noreferrer"><i class="fas fa-file-pdf"></i> PDF</a>
+                            </p>
+                        </li>
+                    </ol>
                 </section>
             </div>            
         </div>
@@ -143,24 +149,27 @@
 
     <footer>
         <div class="container">
-            <div class="row">
-                <figure class="col-md-2 col-xs-12">
+            <div class="pure-g gutters">
+                <div class="funding pure-u-1 pure-u-md-2-3">
                     <img class="eu-logo" src="/euflag.png" alt="EU Flag" />
-                    <figcaption>Funded by the European Union</figcaption>
-                </figure>
-                <div class="col-md-8 col-md-offset-2 col-xs-12">
-                    <p>&copy; ARMADA Project | EU Research Initiative</p>
                     <p>
-                        The ARMADA project has received funding from Horizon Europe Program for Research and Innovation under the action Horizon-MSCA Doctoral Networks, Grant Agreement No. <a href="https://cordis.europa.eu/project/id/101168951" target="_blank">101168951</a>
+                        <strong>Funded by the European Union.</strong>
+                        The ARMADA project has received funding from Horizon Europe Program for Research and Innovation under the action Horizon-MSCA Doctoral Networks, Grant Agreement No. <a href="https://cordis.europa.eu/project/id/101168951" target="_blank" rel="noopener noreferrer">101168951</a>,
+                        and from the Swiss State Secretariat for Education, Research and Innovation (SERI) under SBFI No. 24.00005.
                     </p>
+                </div>
+                <div class="contact pure-u-1 pure-u-md-1-3">
+                    <p><a href="mailto:project.armada@ateneo.univr.it"><i class="fas fa-envelope"></i> project.armada@ateneo.univr.it</a></p>
                     <p>
-                      <small>
-                        Views and opinions expressed are however those of the author(s) only and do not necessarily reflect those of the European Union or the European Commission. Neither the European Union nor the granting authority can be held responsible for them.
-                      </small>
+                        <a href="https://www.linkedin.com/company/107306168/"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                        <a href="https://github.com/ARMADA-DN/"><i class="fab fa-github"></i> GitHub</a>
                     </p>
-
                 </div>
             </div>
+            <p class="fineprint">
+                Views and opinions expressed are however those of the author(s) only and do not necessarily reflect those of the European Union or the European Commission. Neither the European Union nor the granting authority can be held responsible for them.
+                &copy; ARMADA Project | EU Research Initiative
+            </p>
         </div>
     </footer>
   </body>
