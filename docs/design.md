@@ -5,11 +5,14 @@ before changing markup or styles.
 
 ## Principles
 
-- **Flat and quiet.** Structure comes from type, whitespace and thin rules, not
-  from boxes. No gradients, shadows or tinted panels in the content area; the
-  hero is the one place for colour and image.
+- **Quiet, with a little depth.** Structure comes from type, whitespace and
+  thin rules. The page is lightly tinted, and the things you can click (cards,
+  follow links) are white paper resting on it with a faint shadow. No gradients
+  or tinted panels in the content area; the hero is the one place for colour
+  and image, and the deep indigo footer closes the page.
 - **One accent, used sparingly.** Dusty grape marks what is current or
-  interactive: heading icons, the current page in the nav, a hovered link.
+  interactive, and where a section starts: heading icons, the current page in
+  the nav, a hovered link, the bar on each section's rule.
 - **Few shapes.** One radius (`--radius`), one rule (`--rule`). A new component
   uses these before adding its own.
 - **Sizes from the scale.** Text sizes come from `--step-*`.
@@ -49,7 +52,8 @@ value.
 | `--spicy-orange` | `#d74e09` | Not used: tried as the accent and dropped as too loud |
 | `--bright-lemon` | `#ffeb3b` | Not used yet |
 | `--azure-mist` | `#e1eff1` | Photo backgrounds while loading |
-| `--platinum` | `#f7f9fc` | Page background, text on dark |
+| `--platinum` | `#f7f9fc` | Text on dark, the base of the page tint |
+| `--white` | `#ffffff` | Paper: cards and follow links |
 
 ### Roles
 
@@ -62,6 +66,8 @@ itself matters (a gradient between two named colours, say).
 | `--primary-color-light` | `--pacific-blue` |
 | `--secondary-color` | `--azure-mist` |
 | `--white-color` | `--platinum` |
+| `--page-color` | azure mist 40% into platinum: the page background |
+| `--paper-color` | `--white` |
 | `--text-color` | `--space-indigo` |
 | `--dark-color` | `--space-indigo` |
 | `--dark-color2` | `--vintage-grape` |
@@ -76,9 +82,10 @@ A translucent version of a palette colour uses its channel token, never an
 border-bottom: 1px solid rgb(var(--space-indigo-rgb) / 0.12);
 ```
 
-The one channel token is `--space-indigo-rgb`, used at 0.12 in `--rule`. A
-tint of another palette colour adds its channel token to `:root` beside it,
-with the same three numbers as the hex value.
+Channel tokens: `--space-indigo-rgb` (0.12 in `--rule`, 0.04 to 0.06 in
+`--shadow-paper`) and `--platinum-rgb` (text and rules on the indigo footer, at
+0.15 to 0.78). A tint of another palette colour adds its channel token to
+`:root` beside these, with the same three numbers as the hex value.
 
 The sticky nav is opaque on purpose: a translucent background with
 `backdrop-filter` has to be re-blurred on every frame and makes scrolling
@@ -88,7 +95,9 @@ stutter.
 
 - **Body:** `"Montserrat", "Space Grotesk", sans-serif`.
 - **Headings** (`h1` to `h6`, `.sub-heading`): `"Montserrat", "Archivo Black",
-  sans-serif`, weight 900, in `--primary-color`. An icon at the start of a
+  sans-serif`, weight 800, in `--primary-color`, with balanced line breaks
+  (`text-wrap: balance`) so a title never ends on one word alone. In `<main>`,
+  `h1` and `h2` are tracked in by 0.02em and `h3` by 0.01em. An icon at the start of a
   heading in `<main>` takes `--accent-color`.
 - **Body copy** in `<main>` is `--text-color`. Outside `<main>`, `p`, lists and
   similar are `--dark-color2`.
@@ -117,8 +126,11 @@ wide screens; `.sub-heading` 1.75rem, 2.5rem) and the base heading sizes
 - `--radius` (0.375rem): cards, follow links and photos. Sections have no
   radius.
 - `--rule` (1px of space indigo at 12%): card and follow link borders, the line
-  above each section and entry, under the nav, above the footer and its fine
-  print.
+  above each section and entry, under the nav.
+- `--shadow-paper`: a faint two-layer indigo shadow, at rest, on paper (cards,
+  follow links). Nothing else casts a shadow.
+- **Accent bar**: each `.section` has a 2.5rem by 3px bar in the accent over
+  the start of its rule, drawn by `.section::before`.
 
 ## Layout
 
@@ -219,6 +231,7 @@ closing contact line.
 </section>
 ```
 
+- The accent bar marks its start (see Shape).
 - A direct `h2` sets its icon beside the title, in the accent at `--step-1`.
 - A direct `h3` is `--step-1`. A `<small>` inside it sits on its own line in
   `--dark-color2`, for a subtitle such as the lead partner.
@@ -255,7 +268,7 @@ from 64em, each in its own Pure unit, which the card fills.
 </div>
 ```
 
-A flat box: `--rule` border, `--radius`, no background. Hover turns the border
+White paper: `--paper-color`, `--rule` border, `--radius`, `--shadow-paper`. Hover turns the border
 pacific blue; keyboard focus draws a pacific blue outline. The photo is about
 5:5.7, cropped to fit. In a card, the first `.meta` part takes a line of its
 own.
@@ -300,12 +313,15 @@ A wrapping row of partner logos on `index.html`, from `logos/`, each at most
 
 The project's LinkedIn and GitHub, prominent at the top of the home page's
 aside: an uppercase label, then one `a.follow-link` per network, full width,
-with the network's icon in pacific blue and an arrow in the accent. The footer
+on paper like the cards, with the network's icon in pacific blue and an arrow in
+the accent. The footer
 repeats the same links in small; change both together.
 
 ### Footer: `body > footer`
 
-The same markup on every page, copied into each:
+A deep indigo band (`--dark-color`) closing every page, with platinum text at
+78%, white links and strong text, and its rules in platinum at 15%. The same
+markup on every page, copied into each:
 
 - `.funding` (two thirds from 48em): the EU flag beside "Funded by the European
   Union", the Horizon Europe grant (101168951, linking to CORDIS) and the Swiss
@@ -322,11 +338,10 @@ pages.
 
 To fix on purpose, not in passing:
 
-- **SVG presentation attributes.** Each page's header wave sets
-  `fill="#f7f9fc"` in the markup, and `call.html` also has a visible `svg.top`
-  with `fill="#000A14"`, commented out on the other pages. That breaks the
-  rule that presentation lives in the stylesheet. The fix is a `fill` rule in
-  `styles.css` per wave and removing the attributes from every page.
+- **SVG presentation attribute.** `call.html` has a visible `svg.top` with
+  `fill="#000A14"` in the markup (commented out on the other pages), which
+  breaks the rule that presentation lives in the stylesheet. The bottom wave
+  already takes its fill from `styles.css` (`--page-color`).
 - **Older sizes.** The hero and the side column logo still set their own
   sizes outside the scale.
 - **Mixed paths.** Most assets use root-relative paths (`/styles.css`), but some

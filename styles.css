@@ -8,16 +8,20 @@
     --bright-lemon: #ffeb3b;
     --azure-mist: #e1eff1;
     --platinum: #f7f9fc;
+    --white: #ffffff;
 
     /* Palette colours as RGB channels, for translucent tints:
        rgb(var(--space-indigo-rgb) / 0.12) */
     --space-indigo-rgb: 39 38 73;
+    --platinum-rgb: 247 249 252;
 
     /* Roles: use these in rules, not the palette names, where one fits */
     --primary-color: var(--space-indigo);
     --primary-color-light: var(--pacific-blue);
     --secondary-color: var(--azure-mist);
     --white-color: var(--platinum);
+    --page-color: color-mix(in srgb, var(--azure-mist) 40%, var(--platinum));
+    --paper-color: var(--white);
     --text-color: var(--space-indigo);
     --dark-color: var(--space-indigo);
     --dark-color2: var(--vintage-grape);
@@ -34,6 +38,10 @@
     /* Shape: one radius, one rule */
     --radius: 0.375rem;
     --rule: 1px solid rgb(var(--space-indigo-rgb) / 0.12);
+
+    /* Depth: paper resting on the page, and the same paper lifted */
+    --shadow-paper: 0 1px 2px rgb(var(--space-indigo-rgb) / 0.06),
+                    0 2px 8px rgb(var(--space-indigo-rgb) / 0.04);
 
     /* Vertical rhythm: the space after a block of text */
     --space: 1.5rem;
@@ -58,7 +66,7 @@
   @media (min-width: 1200px) { html { font-size: 20px; } }
 
   body {
-    background: var(--white-color);
+    background: var(--page-color);
     margin: 0;
     margin-top: -2em;
 
@@ -194,6 +202,10 @@
     margin-bottom: -1px;
   }
 
+  body > header svg.bottom path {
+    fill: var(--page-color);
+  }
+
   body > header svg.top {
     margin-top: -2em;
     margin-bottom: -5em;
@@ -207,7 +219,8 @@
 
   h1, h2, h3, h4, h5, h6, .sub-heading {
     font-family: "Montserrat", "Archivo Black", sans-serif;
-    font-weight: 900;
+    font-weight: 800;
+    text-wrap: balance;
     font-style: normal;
     color: var(--primary-color);
   }
@@ -223,7 +236,7 @@
     position: sticky;
     top: 0;
     z-index: 100;
-    background: var(--white-color);
+    background: var(--page-color);
     border-bottom: var(--rule);
   }
 
@@ -355,9 +368,8 @@
 
   }
 
-  body > main,
-  body > footer {
-    background-color: var(--white-color);
+  body > main {
+    background-color: var(--page-color);
   }
 
   body > main {
@@ -367,7 +379,7 @@
   }
 
   body > main > .container {
-    background-color: var(--white-color);
+    background-color: var(--page-color);
   }
 
   body > main p,
@@ -390,7 +402,10 @@
   }
 
   body > main h1,
-  body > main h2,
+  body > main h2 {
+    letter-spacing: -0.02em;
+  }
+
   body > main h3 {
     letter-spacing: -0.01em;
   }
@@ -406,13 +421,24 @@
    funding statement and disclaimer are required by the grant. */
 body > footer {
     padding: 2.5rem 0 2rem;
-    border-top: var(--rule);
-    color: var(--dark-color2);
+    background: var(--dark-color);
+    color: rgb(var(--platinum-rgb) / 0.78);
     font-size: var(--step--1);
 }
 
 body > footer p {
     margin: 0 0 0.75rem;
+    color: inherit;
+}
+
+body > footer strong {
+    color: var(--white-color);
+}
+
+body > footer a {
+    color: var(--white-color);
+    text-decoration-color: rgb(var(--platinum-rgb) / 0.4);
+    text-underline-offset: 0.2em;
 }
 
 .funding {
@@ -428,14 +454,13 @@ body > footer p {
 }
 
 .contact a {
-    color: var(--text-color);
     font-weight: 600;
     text-decoration: none;
 }
 
 .contact a:hover {
     text-decoration: underline;
-    text-decoration-color: var(--accent-color);
+    text-decoration-color: var(--primary-color-light);
 }
 
 .contact a + a {
@@ -450,7 +475,8 @@ body > footer p {
 .fineprint {
     margin-top: 1.5rem;
     padding-top: 1rem;
-    border-top: var(--rule);
+    border-top: 1px solid rgb(var(--platinum-rgb) / 0.15);
+    color: rgb(var(--platinum-rgb) / 0.6);
     font-size: var(--step--2);
 }
 
@@ -462,6 +488,21 @@ body > footer p {
     margin: 2.5rem 0 0;
     padding: 1.5rem 0 0;
     border-top: var(--rule);
+}
+
+.section {
+    position: relative;
+}
+
+/* A short accent bar on the start of the section's rule */
+.section::before {
+    content: "";
+    position: absolute;
+    top: -2px;
+    left: 0;
+    width: 2.5rem;
+    height: 3px;
+    background: var(--accent-color);
 }
 
 .section > h2 {
@@ -607,6 +648,8 @@ body > main a.follow-link {
     padding: 0.6rem 0.8rem;
     border: var(--rule);
     border-radius: var(--radius);
+    background-color: var(--paper-color);
+    box-shadow: var(--shadow-paper);
     color: var(--text-color);
     font-weight: 700;
     text-decoration: none;
@@ -639,7 +682,8 @@ body > main a.follow-link:hover {
     padding: 1rem;
     border: var(--rule);
     border-radius: var(--radius);
-    background-color: transparent;
+    background-color: var(--paper-color);
+    box-shadow: var(--shadow-paper);
     color: var(--text-color);
     text-decoration: none;
     transition: border-color 0.15s ease;
