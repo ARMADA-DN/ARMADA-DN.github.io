@@ -20,13 +20,18 @@ Every page loads, in this order:
 
 1. Google Fonts: one stylesheet for Archivo Black, Montserrat and Space Grotesk.
 2. Font Awesome 5.6.3 from its CDN, for icons (`<i class="fas fa-…">`).
-3. `/pico.min.css`: Pico, the base styles and the `.grid` layout.
-4. `/flexboxgrid.min.css`: the `row` and `col-*` grid. Every page except
-   `candidates.html` loads it, since that page uses only Pico's `.grid`.
+3. `/pure-min.css`: Pure 3.1.0, a reset (normalize.css) and the `pure-g` grid.
+4. `/grids-responsive-min.css`: Pure's responsive units (`pure-u-md-*`,
+   `pure-u-lg-*`).
 5. `/styles.css`: the site's own styles.
 
-`pico.min.css` and `flexboxgrid.min.css` are vendored: replace them with a newer
-release, never edit them. Every change goes in `styles.css`.
+Both Pure files are vendored: replace them with a newer release, never edit
+them. Every change goes in `styles.css`.
+
+Pure deliberately has no typography, so `styles.css` sets the base: a root
+size of 16px rising to 17, 18, 19 and 20px at 576, 768, 992 and 1200px,
+heading sizes, spacing (`--space`), lists, figures and `.container`. There is
+no dark mode: the site is designed for light only.
 
 ## Colour
 
@@ -131,14 +136,29 @@ Every page has the same frame:
 The nav sits between `<header>` and `<main>`, not inside the header: it is
 sticky, and a sticky element only sticks within its parent.
 
-Inside `<main>`, the content pages use the flexboxgrid row: `.intro`
-(`col-xs-12 col-md-8`) beside `.side` (`col-xs-12 col-md-4`), 8 and 4 of 12
-columns from 64em (1024px) up and full width below. `index.html` also has
-`.intro` rows offset by one column. `candidates.html` uses Pico's `.grid`.
+Layout uses Pure's grid: a `pure-g` holds units (`pure-u-*`) whose widths are
+fractions, with responsive ones applying from a breakpoint. Add `gutters` to the
+`pure-g` for space between units.
 
-Breakpoints in `styles.css`: 1025px (wider only, the hero) and 480px (the nav).
-Pico's `.grid` puts its children side by side from 992px. Use one of these
-before adding a new breakpoint.
+```html
+<div class="pure-g gutters">
+  <section class="main pure-u-1 pure-u-lg-2-3">…</section>
+  <section class="aside pure-u-1 pure-u-lg-1-3">…</section>
+</div>
+```
+
+- **Main and aside**: two thirds and one third from 64em (1024px), full width
+  below. `.main` and `.aside` name the role; the `pure-u-*` classes size them.
+- **Inset**: `class="main inset …"` indents a main column by one twelfth from
+  64em, for the home page's rows under the intro.
+- **Cards**: a `pure-g gutters` with one `pure-u-1 pure-u-lg-1-3` per card, the
+  card inside it.
+- **Container**: `.container`, at most 510, 700, 920 and 1130px wide at 576,
+  768, 992 and 1200px.
+
+Breakpoints: Pure's 35.5em (568px), 48em (768px), 64em (1024px) and 80em
+(1280px) for the grid; in `styles.css`, 1025px (wider only, the hero), 480px
+(the nav) and the root size steps. Use one of these before adding a new one.
 
 ## Components
 
@@ -193,8 +213,8 @@ also carries a `wp-<name>` class (`wp-efficiency`, `wp-grounding`,
 
 ### Candidate card: `.candidate-grid`, `.candidate-card`
 
-On `candidates.html`, in a `.grid.candidate-grid` inside each work package
-section. The whole card is a link (`<a class="candidate-card">`) to the
+On `candidates.html`, in a `pure-g gutters candidate-grid` inside each work
+package section, each card in its own `pure-u-1 pure-u-lg-1-3`. The whole card is a link (`<a class="candidate-card">`) to the
 candidate's profile. A flat box: `--rule` border, `--radius`, no background.
 Hover turns the border pacific blue; keyboard focus draws a pacific blue
 outline.

@@ -47,7 +47,7 @@ is a `doc` asset that describes it. Each `doc` row must be matched in
 | - | - | - |
 | `index.html`, `call.html`, `2026-univr-winterschool.html` | site | Pages |
 | `styles.css` | site | The site's own styles |
-| `pico.min.css`, `flexboxgrid.min.css` | site | Vendored, replaced, never edited |
+| `pure-min.css`, `grids-responsive-min.css` | site | Pure 3.1.0, vendored, replaced, never edited |
 | `logos/`, `images/`, `armada-logo.png`, `euflag.png` | site | Images |
 | `redirects/` | site | Short paths to external URLs |
 | `CNAME`, `LICENSE` | site | Domain record, licence |

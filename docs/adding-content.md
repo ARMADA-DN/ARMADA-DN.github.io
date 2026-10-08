@@ -50,8 +50,8 @@ The pattern every page follows, in this order:
 <title>ARMADA …</title>
 <!-- Google Fonts: preconnect to both hosts, then one stylesheet -->
 <!-- Font Awesome 5.6.3 -->
-<link rel="stylesheet" href="/pico.min.css" />
-<link rel="stylesheet" href="/flexboxgrid.min.css" />  <!-- if the page uses row/col-* -->
+<link rel="stylesheet" href="/pure-min.css" />
+<link rel="stylesheet" href="/grids-responsive-min.css" />
 <link rel="stylesheet" href="/styles.css" />
 ```
 

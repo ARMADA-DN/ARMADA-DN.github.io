@@ -34,7 +34,28 @@
     /* Shape: one radius, one rule */
     --radius: 0.375rem;
     --rule: 1px solid rgb(var(--space-indigo-rgb) / 0.12);
+
+    /* Vertical rhythm: the space after a block of text */
+    --space: 1.5rem;
   }
+
+  /* Base: Pure brings only a reset (normalize.css), so type, spacing
+     and the container are set here */
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    font-size: 16px;
+    line-height: 1.5;
+  }
+
+  @media (min-width: 576px) { html { font-size: 17px; } }
+  @media (min-width: 768px) { html { font-size: 18px; } }
+  @media (min-width: 992px) { html { font-size: 19px; } }
+  @media (min-width: 1200px) { html { font-size: 20px; } }
 
   body {
     background: var(--white-color);
@@ -46,7 +67,108 @@
     font-family: "Montserrat", "Space Grotesk", sans-serif;
     font-optical-sizing: auto;
     font-style: normal;
+  }
 
+  h1, h2, h3, h4, h5, h6 {
+    margin: 0 0 var(--space);
+    line-height: 1.2;
+  }
+
+  h1 { font-size: 2rem; }
+  h2 { font-size: 1.75rem; }
+  h3 { font-size: 1.5rem; }
+  h4 { font-size: 1.25rem; }
+  h5 { font-size: 1.125rem; }
+  h6 { font-size: 1rem; }
+
+  p, ul, ol, dl, figure, blockquote, pre, table, address {
+    margin: 0 0 var(--space);
+  }
+
+  :is(p, ul, ol, dl, figure, blockquote, pre, table, address, article) + :is(h1, h2, h3, h4, h5, h6) {
+    margin-top: calc(var(--space) * 1.5);
+  }
+
+  ul, ol {
+    padding-left: 1.25rem;
+  }
+
+  li {
+    margin-bottom: calc(var(--space) / 4);
+  }
+
+  ul li {
+    list-style: square;
+  }
+
+  section {
+    margin-bottom: calc(var(--space) * 1.5);
+  }
+
+  small {
+    font-size: 0.875em;
+  }
+
+  hr {
+    height: 0;
+    margin: var(--space) 0;
+    border: 0;
+    border-top: var(--rule);
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+    vertical-align: middle;
+  }
+
+  figure {
+    padding: 0;
+  }
+
+  figcaption {
+    padding: calc(var(--space) / 3) 0;
+    color: var(--dark-color2);
+    font-size: var(--step--1);
+  }
+
+  kbd {
+    padding: 0.2em 0.4em;
+    border-radius: var(--radius);
+    background: var(--primary-color);
+    color: var(--white-color);
+    font-size: 0.875em;
+    font-weight: 600;
+  }
+
+  /* Layout: the container, and gutters for Pure grids */
+  .container {
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+
+  @media (min-width: 576px) { .container { max-width: 510px; padding: 0; } }
+  @media (min-width: 768px) { .container { max-width: 700px; } }
+  @media (min-width: 992px) { .container { max-width: 920px; } }
+  @media (min-width: 1200px) { .container { max-width: 1130px; } }
+
+  /* A Pure grid with space between its units: a negative margin on the
+     grid, padding on each unit */
+  .pure-g.gutters {
+    margin: 0 -0.75rem;
+    row-gap: var(--space);
+  }
+
+  .pure-g.gutters > [class*="pure-u"] {
+    padding: 0 0.75rem;
+  }
+
+  /* Main column indented by one twelfth, from Pure's lg breakpoint */
+  @media screen and (min-width: 64em) {
+    .main.inset {
+      margin-left: 8.3333%;
+    }
   }
 
 
@@ -241,7 +363,7 @@
   body > main {
     position: relative;
     z-index: 99;
-    padding-top: 1.5rem;
+    padding: 1.5rem 0 3rem;
   }
 
   body > main > .container {
@@ -380,6 +502,7 @@ li.task {
 
 .program-detail-list {
     margin-bottom: 1rem;
+    row-gap: 1rem;
 }
 
 .program-detail-list p {
@@ -447,6 +570,7 @@ li.task {
     color: var(--text-color);
     text-decoration: none;
     transition: border-color 0.15s ease;
+    height: 100%;
 }
 
 body > main a.candidate-card {
