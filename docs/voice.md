@@ -4,10 +4,12 @@ Who the site is for, and how it speaks to them. Read this before writing or
 editing any copy. It covers the words the site shows its readers, not how the
 repository's own documentation is written.
 
-**Exception: `call.html`.** The 2025 call for candidates is a record of what was
-published, and its copy is not edited, for voice or anything else. None of the
-rules below apply to it. It still follows the visual design like every page:
-markup and styles change with the rest of the site, its words do not.
+**Exception: the call in `call.html`.** The 2025 call for candidates is a record
+of what was published. The copy inside the page's `<main>` is not edited, for
+voice or anything else, and none of the rules below apply to it. Everything
+outside `<main>` is shared with the other pages and changes with them, words
+included: the head, the header, the nav and the footer. Markup and styles change
+with the rest of the site throughout the page.
 
 ## Audience
 

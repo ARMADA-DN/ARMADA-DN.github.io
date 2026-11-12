@@ -89,8 +89,9 @@ every page: WP1 Efficiency `fa-tachometer-alt`, WP2 Grounding `fa-anchor`, WP3
 Explainability `fa-comments`, WP4 Soundness `fa-shield-alt`, WP5 Guidance
 `fa-compass`.
 
-`call.html` is frozen: its copy is a record of the 2025 call and is not
-edited (see [voice.md](voice.md)), so nothing is added to it. For reference,
+The call in `call.html` is frozen: the copy in its `<main>` is a record of the
+2025 call and is not edited (see [voice.md](voice.md)), so no work package or
+task is added to it. For reference,
 each work package there is an `article.section`: an `h3` with the icon,
 "WP<N>: <Name>" and a `<small>` naming the lead partner, then a `ul.tasks`.
 Each task is an `li` with:
