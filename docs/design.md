@@ -75,6 +75,7 @@ itself matters (a gradient between two named colours, say).
 | `--dark-color` | `--space-indigo` |
 | `--dark-color2` | `--vintage-grape` |
 | `--accent-color` | `--dusty-grape` |
+| `--focus-color` | `--primary-color`: keyboard focus outlines, which need 3:1 against the page (pacific blue gives 2.24:1) |
 
 ### Tints
 
@@ -173,8 +174,10 @@ fractions, with responsive ones applying from a breakpoint. Add `gutters` to the
   From 64em the aside stands 3rem off the main column, separated by whitespace
   alone. The aside is also raised by 7em (`position: relative; top: -7em`), so
   its logo breaks above the main column's first line and up past the nav's
-  rule, giving the page a staggered, vertical rhythm. It sits in front of the
-  nav (`z-index: 101`) so the raised logo shows.
+  rule, giving the page a staggered, vertical rhythm. Only the logo sits in
+  front of the nav (`.aside > .logo`, `z-index: 101`); the rest of the aside
+  stays behind it, so on scroll its text and links pass under the nav's links
+  instead of covering them.
 - **Main text** is a touch smaller than the root (0.9375rem), with a line
   height of 1.65 and a little more space between paragraphs, so it breathes
   beside the aside.
@@ -311,7 +314,7 @@ from 64em, each in its own Pure unit, which the card fills.
 ```
 
 White paper: `--paper-color`, `--rule` border, `--radius`, `--shadow-paper`. Hover turns the border
-pacific blue; keyboard focus draws a pacific blue outline. The photo is about
+pacific blue; keyboard focus draws an outline in `--focus-color`. The photo is about
 5:5.7, cropped to fit. In a card, the first `.meta` part takes a line of its
 own.
 

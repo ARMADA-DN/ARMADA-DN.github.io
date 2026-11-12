@@ -26,6 +26,8 @@
     --dark-color: var(--space-indigo);
     --dark-color2: var(--vintage-grape);
     --accent-color: var(--dusty-grape);
+    /* A focus outline needs 3:1 against the page; pacific blue gives 2.24:1 */
+    --focus-color: var(--primary-color);
 
     /* Type scale: use a step, not a new size */
     --step--2: 0.75rem;
@@ -303,7 +305,7 @@
   }
 
   .site-nav a:focus-visible {
-    outline: 2px solid var(--primary-color-light);
+    outline: 2px solid var(--focus-color);
     outline-offset: 2px;
   }
 
@@ -669,11 +671,16 @@ body > footer a {
     }
 
     /* The aside rises above the main column's first line, breaking the
-       line into the nav for a staggered, vertical rhythm. It sits in front
-       of the nav so the raised logo shows. */
+       line into the nav for a staggered, vertical rhythm. Only its logo
+       sits in front of the nav, so the rest of the aside scrolls under the
+       nav and cannot cover its links. */
     .aside {
         position: relative;
         top: -7em;
+    }
+
+    .aside > .logo {
+        position: relative;
         z-index: 101;
     }
 }
@@ -864,7 +871,7 @@ body > main a.card {
 }
 
 .card:focus-visible {
-    outline: 2px solid var(--primary-color-light);
+    outline: 2px solid var(--focus-color);
     outline-offset: 2px;
 }
 
