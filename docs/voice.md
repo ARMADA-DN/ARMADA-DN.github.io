@@ -59,7 +59,8 @@ sounding impressive.
 
 - **English**, on every page (`lang="en"`). No page is translated.
 - **American spelling**: program, specialize, organization, behavior.
-- Dates as "January 12–17, 2026"; places as "Verona, Italy".
+- Dates as "January 12–17, 2026", or across two months "April 26 – May 2,
+  2026"; places as "Verona, Italy".
 - Numbers as figures from 10 up, and always for counts that matter (15
   doctoral candidates, 8 organizations, 5 work packages).
 
