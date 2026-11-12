@@ -18,32 +18,24 @@ Then open <http://localhost:8000/>.
 
 ## Deployment
 
-**Status (2026-10-01): moving from "Deploy from a branch" to "GitHub Actions".**
-Until the switch below is done, `main` is still published as-is, including the
-files listed as `doc` in the table below.
+Every push to `main` runs `.github/workflows/pages.yml`, which stages the site
+with `.github/pages-stage.sh`: everything is copied into `_site/` except what
+`.pagesignore` lists, and the deploy fails if a `doc` asset below would be
+published anyway. A push to `main` is a deployment.
 
-Once switched, every push to `main` runs `.github/workflows/pages.yml`, which
-stages the site with `.github/pages-stage.sh`: everything is copied into
-`_site/` except what `.pagesignore` lists, and the deploy fails if a `doc` asset
-below would be published anyway. A push to `main` is a deployment.
+The Pages source is **GitHub Actions** (since 2026-10-04, PR #11). The custom
+domain `armada-dn.eu` and **Enforce HTTPS** are set in **Settings → Pages**;
+with Actions the `CNAME` file no longer decides the domain, but is kept.
 
-### Switching the Pages source
+### Checking a deploy
 
-1. Merge the branch that adds `.github/workflows/pages.yml` into `main` only
-   when ready to do steps 2 and 3 straight after.
-2. In the repository on GitHub: **Settings → Pages → Build and deployment →
-   Source**, choose **GitHub Actions**.
-3. On the same page, check that **Custom domain** still reads `armada-dn.eu`
-   and that **Enforce HTTPS** is on. With Actions the domain comes from this
-   setting; the `CNAME` file is kept but no longer decides it.
-4. **Actions → Pages → Run workflow** on `main`, or push to `main`, and wait
-   for the deploy to go green.
-5. Check that <https://armada-dn.eu/> loads with its styles, and that
-   <https://armada-dn.eu/AGENTS.md> and <https://armada-dn.eu/docs/voice.md>
-   now return 404.
-6. Update the status line above.
+1. **Actions → Pages**: the run for the push is green.
+2. <https://armada-dn.eu/> loads with its styles.
+3. Doc assets are not published: <https://armada-dn.eu/AGENTS.md> and
+   <https://armada-dn.eu/docs/voice.md> return 404.
 
-To go back, set the source to **Deploy from a branch**, `main`, `/ (root)`.
+To fall back to publishing the branch as-is, set the source to **Deploy from a
+branch**, `main`, `/ (root)`. Doc assets are then public again.
 
 ## Assets
 
@@ -55,7 +47,7 @@ is a `doc` asset that describes it. Each `doc` row must be matched in
 | - | - | - |
 | `index.html`, `call.html`, `2026-univr-winterschool.html` | site | Pages |
 | `styles.css` | site | The site's own styles |
-| `pico.min.css`, `flexboxgrid.min.css` | site | Vendored, replaced, never edited |
+| `pure-min.css`, `grids-responsive-min.css` | site | Pure 3.1.0, vendored, replaced, never edited |
 | `logos/`, `images/`, `armada-logo.png`, `euflag.png` | site | Images |
 | `redirects/` | site | Short paths to external URLs |
 | `CNAME`, `LICENSE` | site | Domain record, licence |
