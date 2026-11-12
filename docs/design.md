@@ -105,6 +105,10 @@ stutter.
   heading in `<main>` takes `--accent-color`.
 - **Body copy** in `<main>` is `--text-color`. Outside `<main>`, `p`, lists and
   similar are `--dark-color2`.
+- **Bold** (`<strong>`) in body copy marks what ARMADA contributes: what it
+  trains, builds or delivers, not the problem it addresses. A paragraph that
+  only states the problem has none. A reader skimming the bold alone should
+  get what the project does.
 - **Links** in `<main>` take the text colour, underlined in pacific blue with a
   small offset; the underline turns to the accent on hover.
 - **Labels** (the nav, stats labels, "Follow ARMADA", a publication's year and
@@ -182,7 +186,9 @@ fractions, with responsive ones applying from a breakpoint. Add `gutters` to the
   height of 1.65 and a little more space between paragraphs, so it breathes
   beside the aside.
 - **Inset**: `class="main inset …"` indents a main column by one twelfth from
-  64em, for the home page's rows under the intro.
+  64em, for the home page's rows under the intro. A row that needs the room,
+  like the partner logos, takes `pure-u-lg-11-12` instead of `pure-u-lg-2-3`
+  and runs from the indent to the right edge of the content.
 - **Cards**: a `pure-g gutters` with one `pure-u-1 pure-u-lg-1-3` per card, the
   card inside it.
 - **Container**: `.container`, at most 510, 700, 920 and 1130px wide at 576,
@@ -202,14 +208,14 @@ once in `styles.css` and used wherever the pattern appears.
 | Site navigation | `.site-nav` | every page |
 | Header and hero | `body > header`, `.hero` | every page |
 | Section | `.section` | call, candidates |
-| Entry | `.entry` | winter school |
+| Entry | `.entry` | winter school, summer school |
 | Publications | `.pub-list`, `.pub` | index |
 | Card | `.card` | candidates |
 | Meta | `.meta` | candidates, call |
 | Stats | `.stats` | candidates |
 | Note | `.note` | candidates |
 | Tasks | `.tasks` | call |
-| Item list | `.item-list` | index, call, winter school |
+| Item list | `.item-list` | index, call, winter school, summer school |
 | Logo strip | `.logo-strip` | index |
 | Follow | `.follow` | index |
 | Footer | `body > footer` | every page |
@@ -262,7 +268,8 @@ closing contact line.
 ### Entry: `.entry`
 
 One item of a kind in a list of them: each keynote on
-`2026-univr-winterschool.html`. An `h3` title, with an optional
+`2026-univr-winterschool.html`, each lecture on `2026-cnrs-summerschool.html`.
+An `h3` title, with an optional
 `<small>` subtitle (the speaker's affiliation), then paragraphs. Styled like a
 section for now; a separate name so the two can diverge.
 
@@ -346,7 +353,7 @@ the partner.
 
 A list whose items lead with a label: `<li><strong>Label:</strong> text</li>` or
 a name in `<b>`. Key innovations and events on `index.html`, supervisors on
-`call.html`, speakers on the winter school page. No styles of its own yet; it
+`call.html`, speakers on the event pages. No styles of its own yet; it
 is the hook for styling these lists together.
 
 ### Aside: `.aside`
@@ -383,8 +390,8 @@ markup on every page, copied into each:
 - `.fineprint`: the EU disclaimer and the copyright, small, under a rule.
 
 The funding statement and the disclaimer are required by the grant: change
-their wording only on instruction. A change to the footer is made on all four
-pages.
+their wording only on instruction. A change to the footer is made on every
+page.
 
 ## Known issues
 
