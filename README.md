@@ -45,7 +45,7 @@ is a `doc` asset that describes it. Each `doc` row must be matched in
 
 | Path | Kind | What |
 | - | - | - |
-| `index.html`, `call.html`, `2026-univr-winterschool.html` | site | Pages |
+| `index.html`, `call.html`, `2026-univr-winterschool.html`, `2026-cnrs-summerschool.html` | site | Pages |
 | `styles.css` | site | The site's own styles |
 | `pure-min.css`, `grids-responsive-min.css` | site | Pure 3.1.0, vendored, replaced, never edited |
 | `logos/`, `images/`, `armada-logo.png`, `euflag.png` | site | Images |

@@ -7,8 +7,9 @@ copy should read, in [voice.md](voice.md).
 ## Adding a page
 
 The pages today: `index.html` (home), `candidates.html` (the doctoral
-candidates), `call.html` (the 2025 call for candidates, now closed) and
-`2026-univr-winterschool.html` (the 2026 winter school in Verona).
+candidates), `call.html` (the 2025 call for candidates, now closed),
+`2026-univr-winterschool.html` (the 2026 winter school in Verona) and
+`2026-cnrs-summerschool.html` (the 2026 summer school in Cargèse).
 
 1. **Copy the page closest to the new one.** `call.html` or
    `2026-univr-winterschool.html` for a text page with a side column,
@@ -22,7 +23,9 @@ candidates), `call.html` (the 2025 call for candidates, now closed) and
    contents of `<main>`.
 4. **Decide whether it goes in the nav.** Only main sections do (Home, Doctoral
    Candidates). A call or an event page stays out of it and is linked from the
-   content instead, but still carries the nav itself. For a page that goes in,
+   content instead, but still carries the nav itself. An event page gets an
+   entry in the home page's Events list, linked from both its title and its
+   "Learn more". For a page that goes in,
    add its `<li>` to the nav on every page, with `aria-current="page"` on the
    new page's own link only.
 5. **Use root-relative paths** for every asset and link (`/styles.css`,
